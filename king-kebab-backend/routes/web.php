@@ -7,6 +7,13 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminMenuController;
+use App\Http\Controllers\Admin\AdminReservationController;
+use App\Http\Controllers\Admin\AdminContactController;
+use App\Http\Controllers\Admin\AdminNewsletterController;
+use App\Http\Controllers\Admin\AdminArticleController;
+use App\Http\Controllers\Admin\AdminSettingController;
 
 // Main pages
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -32,3 +39,44 @@ Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsle
 // Article routes
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
+
+// Admin Routes
+Route::prefix('admin')->group(function () {
+    // Admin Login
+    Route::get('/login', [AdminController::class, 'showLogin'])->name('admin.login');
+    Route::post('/login', [AdminController::class, 'login'])->name('admin.login.post');
+    Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+    
+    // Admin Dashboard (Protected)
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+        
+        // Menu Management
+        Route::resource('menus', AdminMenuController::class);
+        Route::get('menu-categories', [AdminMenuController::class, 'categories'])->name('admin.menu.categories');
+        Route::post('menu-categories', [AdminMenuController::class, 'storeCategory'])->name('admin.menu.categories.store');
+        Route::delete('menu-categories/{id}', [AdminMenuController::class, 'deleteCategory'])->name('admin.menu.categories.delete');
+        
+        // Reservations Management
+        Route::resource('reservations', AdminReservationController::class);
+        Route::patch('reservations/{id}/status', [AdminReservationController::class, 'updateStatus'])->name('admin.reservations.status');
+        
+        // Contacts Management
+        Route::resource('contacts', AdminContactController::class);
+        Route::patch('contacts/{id}/status', [AdminContactController::class, 'updateStatus'])->name('admin.contacts.status');
+        
+        // Newsletter Management
+        Route::resource('newsletters', AdminNewsletterController::class);
+        
+        // Articles Management
+        Route::resource('articles', AdminArticleController::class);
+        
+        // Settings Management
+        Route::get('settings', [AdminSettingController::class, 'index'])->name('admin.settings');
+        Route::post('settings', [AdminSettingController::class, 'update'])->name('admin.settings.update');
+        
+        // Profile Management
+        Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
+        Route::post('profile', [AdminController::class, 'updateProfile'])->name('admin.profile.update');
+    });
+});

@@ -739,6 +739,53 @@
       }
     }
 
+    /* WhatsApp Floating Button */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      animation: whatsappPulse 2s infinite;
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+      background: #128C7E;
+    }
+
+    .whatsapp-btn ion-icon {
+      font-size: 30px;
+      transition: transform 0.3s ease;
+    }
+
+    .whatsapp-btn:hover ion-icon {
+      transform: scale(1.2);
+    }
+
+    @keyframes whatsappPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+
     /* Responsive improvements */
     @media (max-width: 768px) {
       .footer-top {
@@ -752,6 +799,17 @@
 
       .footer-link {
         justify-content: center;
+      }
+
+      .whatsapp-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        left: 15px;
+      }
+
+      .whatsapp-btn ion-icon {
+        font-size: 25px;
       }
     }
 
@@ -1052,6 +1110,11 @@
   <a href="#top" class="back-top-btn" aria-label="Back to top" data-back-top-btn>
         <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
     </a>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/0426423743" target="_blank" class="whatsapp-btn" aria-label="Contact us on WhatsApp">
+    <ion-icon name="logo-whatsapp" aria-hidden="true"></ion-icon>
+  </a>
 
   <!-- Custom js link -->
     <script src="{{ asset('assets/js/script.js') }}"></script>
@@ -1379,6 +1442,73 @@
         }
       `;
       document.head.appendChild(style);
+
+      // WhatsApp button enhancements
+      const whatsappBtn = document.querySelector('.whatsapp-btn');
+      if (whatsappBtn) {
+        // Add click animation
+        whatsappBtn.addEventListener('click', function(e) {
+          // Create ripple effect
+          const ripple = document.createElement('span');
+          const rect = this.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          const x = e.clientX - rect.left - size / 2;
+          const y = e.clientY - rect.top - size / 2;
+          
+          ripple.style.width = ripple.style.height = size + 'px';
+          ripple.style.left = x + 'px';
+          ripple.style.top = y + 'px';
+          ripple.style.background = 'rgba(255,255,255,0.3)';
+          ripple.style.borderRadius = '50%';
+          ripple.style.position = 'absolute';
+          ripple.style.transform = 'scale(0)';
+          ripple.style.animation = 'ripple-animation 0.6s linear';
+          ripple.style.pointerEvents = 'none';
+          
+          this.appendChild(ripple);
+          
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+
+          // Add bounce effect
+          this.style.transform = 'scale(0.9)';
+          setTimeout(() => {
+            this.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+              this.style.transform = 'scale(1)';
+            }, 150);
+          }, 100);
+        });
+
+        // Add hover sound effect (optional)
+        whatsappBtn.addEventListener('mouseenter', function() {
+          // You can add a subtle sound effect here if needed
+          this.style.animation = 'whatsappPulse 1s infinite';
+        });
+
+        whatsappBtn.addEventListener('mouseleave', function() {
+          this.style.animation = 'whatsappPulse 2s infinite';
+        });
+
+        // Add scroll-based visibility
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          
+          if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scrolling down - hide button slightly
+            whatsappBtn.style.transform = 'translateY(10px)';
+            whatsappBtn.style.opacity = '0.8';
+          } else {
+            // Scrolling up or at top - show button
+            whatsappBtn.style.transform = 'translateY(0)';
+            whatsappBtn.style.opacity = '1';
+          }
+          
+          lastScrollTop = scrollTop;
+        });
+      }
     });
   </script>
 </body>
