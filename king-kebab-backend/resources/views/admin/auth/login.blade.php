@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول - لوحة الإدارة</title>
+    <title>Connexion Admin - Tableau de Bord</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -100,7 +100,7 @@
                     <i class="fas fa-crown"></i>
                 </div>
                 <h1>King Kebab</h1>
-                <p>لوحة إدارة الموقع</p>
+                <p>Tableau de Bord Administratif</p>
             </div>
 
             @if ($errors->any())
@@ -121,7 +121,7 @@
                         <span class="input-group-text">
                             <i class="fas fa-envelope"></i>
                         </span>
-                        <input type="email" name="email" class="form-control" placeholder="البريد الإلكتروني" value="{{ old('email') }}" required>
+                        <input type="email" name="email" class="form-control" placeholder="Adresse Email" value="{{ old('email') }}" required>
                     </div>
                 </div>
 
@@ -130,20 +130,20 @@
                         <span class="input-group-text">
                             <i class="fas fa-lock"></i>
                         </span>
-                        <input type="password" name="password" class="form-control" placeholder="كلمة المرور" required>
+                        <input type="password" name="password" class="form-control" placeholder="Mot de Passe" required>
                     </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-login w-100">
                     <i class="fas fa-sign-in-alt me-2"></i>
-                    تسجيل الدخول
+                    Se Connecter
                 </button>
             </form>
 
             <div class="text-center mt-4">
                 <a href="{{ route('home') }}" class="text-decoration-none">
                     <i class="fas fa-arrow-left me-1"></i>
-                    العودة للموقع الرئيسي
+                    Retour au Site Principal
                 </a>
             </div>
         </div>

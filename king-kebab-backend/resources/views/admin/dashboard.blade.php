@@ -1,9 +1,9 @@
 @extends('admin.layouts.app')
 
-@section('title', 'لوحة الإدارة')
+@section('title', 'Tableau de Bord')
 
 @section('breadcrumb')
-<li class="breadcrumb-item active">لوحة الإدارة</li>
+<li class="breadcrumb-item active">Tableau de Bord</li>
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <div class="stats-number">{{ $stats['reservations'] }}</div>
-                    <div class="stats-label">إجمالي الحجوزات</div>
+                    <div class="stats-label">Total Réservations</div>
                 </div>
                 <div class="stats-icon">
                     <i class="fas fa-calendar-check"></i>
@@ -28,7 +28,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <div class="stats-number">{{ $stats['pending_reservations'] }}</div>
-                    <div class="stats-label">الحجوزات المعلقة</div>
+                    <div class="stats-label">Réservations en Attente</div>
                 </div>
                 <div class="stats-icon">
                     <i class="fas fa-clock"></i>
@@ -42,7 +42,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <div class="stats-number">{{ $stats['contacts'] }}</div>
-                    <div class="stats-label">الرسائل</div>
+                    <div class="stats-label">Messages</div>
                 </div>
                 <div class="stats-icon">
                     <i class="fas fa-envelope"></i>
@@ -56,7 +56,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <div class="stats-number">{{ $stats['menus'] }}</div>
-                    <div class="stats-label">عناصر القائمة</div>
+                    <div class="stats-label">Éléments du Menu</div>
                 </div>
                 <div class="stats-icon">
                     <i class="fas fa-utensils"></i>

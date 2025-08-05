@@ -15,6 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Create admin user
+        $this->call([
+            AdminUserSeeder::class,
+        ]);
+
         // Settings
         Setting::set('site_name', 'King Kebab');
         Setting::set('site_description', 'Le vrai goût du kebab');

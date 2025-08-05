@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'لوحة الإدارة') - King Kebab</title>
+    <title>@yield('title', 'Tableau de Bord') - King Kebab</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.css" rel="stylesheet">
@@ -29,7 +29,7 @@
             min-height: 100vh;
             position: fixed;
             top: 0;
-            right: 0;
+            left: 0;
             width: 250px;
             z-index: 1000;
             transition: all 0.3s ease;
@@ -68,7 +68,7 @@
         .nav-link:hover {
             color: white;
             background-color: rgba(255, 255, 255, 0.1);
-            transform: translateX(-5px);
+            transform: translateX(5px);
         }
 
         .nav-link.active {
@@ -77,13 +77,13 @@
         }
 
         .nav-link i {
-            margin-left: 0.75rem;
+            margin-right: 0.75rem;
             width: 20px;
             text-align: center;
         }
 
         .main-content {
-            margin-right: 250px;
+            margin-left: 250px;
             padding: 2rem;
             min-height: 100vh;
         }
@@ -229,63 +229,63 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <h3><i class="fas fa-crown me-2"></i>King Kebab</h3>
-            <small class="text-white-50">لوحة الإدارة</small>
+            <small class="text-white-50">Tableau de Bord</small>
         </div>
         
         <nav class="sidebar-nav">
             <div class="nav-item">
                 <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                     <i class="fas fa-tachometer-alt"></i>
-                    <span>الرئيسية</span>
+                    <span>Accueil</span>
                 </a>
             </div>
             
             <div class="nav-item">
                 <a href="{{ route('admin.menus.index') }}" class="nav-link {{ request()->routeIs('admin.menus.*') ? 'active' : '' }}">
                     <i class="fas fa-utensils"></i>
-                    <span>إدارة القوائم</span>
+                    <span>Gestion des Menus</span>
                 </a>
             </div>
             
             <div class="nav-item">
                 <a href="{{ route('admin.reservations.index') }}" class="nav-link {{ request()->routeIs('admin.reservations.*') ? 'active' : '' }}">
                     <i class="fas fa-calendar-check"></i>
-                    <span>الحجوزات</span>
+                    <span>Réservations</span>
                 </a>
             </div>
             
             <div class="nav-item">
                 <a href="{{ route('admin.contacts.index') }}" class="nav-link {{ request()->routeIs('admin.contacts.*') ? 'active' : '' }}">
                     <i class="fas fa-envelope"></i>
-                    <span>الرسائل</span>
+                    <span>Messages</span>
                 </a>
             </div>
             
             <div class="nav-item">
                 <a href="{{ route('admin.newsletters.index') }}" class="nav-link {{ request()->routeIs('admin.newsletters.*') ? 'active' : '' }}">
                     <i class="fas fa-newspaper"></i>
-                    <span>النشرة الإخبارية</span>
+                    <span>Newsletter</span>
                 </a>
             </div>
             
             <div class="nav-item">
                 <a href="{{ route('admin.articles.index') }}" class="nav-link {{ request()->routeIs('admin.articles.*') ? 'active' : '' }}">
                     <i class="fas fa-file-alt"></i>
-                    <span>المقالات</span>
+                    <span>Articles</span>
                 </a>
             </div>
             
             <div class="nav-item">
                 <a href="{{ route('admin.settings') }}" class="nav-link {{ request()->routeIs('admin.settings') ? 'active' : '' }}">
                     <i class="fas fa-cog"></i>
-                    <span>الإعدادات</span>
+                    <span>Paramètres</span>
                 </a>
             </div>
             
             <div class="nav-item">
                 <a href="{{ route('admin.profile') }}" class="nav-link {{ request()->routeIs('admin.profile') ? 'active' : '' }}">
                     <i class="fas fa-user"></i>
-                    <span>الملف الشخصي</span>
+                    <span>Profil</span>
                 </a>
             </div>
             
@@ -294,7 +294,7 @@
                     @csrf
                     <button type="submit" class="nav-link border-0 bg-transparent w-100 text-start">
                         <i class="fas fa-sign-out-alt"></i>
-                        <span>تسجيل الخروج</span>
+                        <span>Se Déconnecter</span>
                     </button>
                 </form>
             </div>
@@ -309,7 +309,7 @@
                 <h1 class="page-title">@yield('title', 'لوحة الإدارة')</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">الرئيسية</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Accueil</a></li>
                         @yield('breadcrumb')
                     </ol>
                 </nav>
@@ -325,14 +325,14 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('admin.profile') }}">
-                            <i class="fas fa-user me-2"></i>الملف الشخصي
+                            <i class="fas fa-user me-2"></i>Profil
                         </a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
                             <form method="POST" action="{{ route('admin.logout') }}" class="d-inline">
                                 @csrf
                                 <button type="submit" class="dropdown-item">
-                                    <i class="fas fa-sign-out-alt me-2"></i>تسجيل الخروج
+                                    <i class="fas fa-sign-out-alt me-2"></i>Se Déconnecter
                                 </button>
                             </form>
                         </li>

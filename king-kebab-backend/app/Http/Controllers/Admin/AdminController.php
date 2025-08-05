@@ -35,7 +35,7 @@ class AdminController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'بيانات الدخول غير صحيحة.',
+            'email' => 'Les informations de connexion sont incorrectes.',
         ])->withInput($request->only('email'));
     }
 
@@ -87,7 +87,7 @@ class AdminController extends Controller
 
         if ($request->filled('current_password')) {
             if (!Hash::check($request->current_password, $user->password)) {
-                return back()->withErrors(['current_password' => 'كلمة المرور الحالية غير صحيحة']);
+                return back()->withErrors(['current_password' => 'Le mot de passe actuel est incorrect']);
             }
             
             if ($request->filled('new_password')) {
@@ -97,6 +97,6 @@ class AdminController extends Controller
 
         $user->save();
 
-        return back()->with('success', 'تم تحديث الملف الشخصي بنجاح');
+        return back()->with('success', 'Profil mis à jour avec succès');
     }
 } 

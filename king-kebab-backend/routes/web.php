@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\AdminContactController;
 use App\Http\Controllers\Admin\AdminNewsletterController;
 use App\Http\Controllers\Admin\AdminArticleController;
 use App\Http\Controllers\Admin\AdminSettingController;
+use Illuminate\Support\Facades\Auth;
 
 // Main pages
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -80,3 +81,11 @@ Route::prefix('admin')->group(function () {
         Route::post('profile', [AdminController::class, 'updateProfile'])->name('admin.profile.update');
     });
 });
+
+// Redirect admin root to login if not authenticated
+Route::get('/admin', function () {
+    if (Auth::check()) {
+        return redirect()->route('admin.dashboard');
+    }
+    return redirect()->route('admin.login');
+})->name('admin');
