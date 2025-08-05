@@ -12,121 +12,29 @@
             <h2 class="headline-1 section-title text-center">Menu délicieux</h2>
 
             <ul class="grid-list">
+                @foreach($menus as $meal)
                 <li>
                     <div class="menu-card hover:card">
                         <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                            <img src="{{ asset('assets/images/menu-1.png') }}" width="100" height="100" loading="lazy" alt="Kebab Classique" class="img-cover">
+                            <img src="{{ asset('assets/images/menu-1.png') }}" width="100" height="100" loading="lazy" alt="{{ $meal->name }}" class="img-cover">
                         </figure>
                         <div>
                             <div class="title-wrapper">
                                 <h3 class="title-3">
-                                    <a href="#" class="card-title">Kebab Classique</a>
+                                    <a href="{{ route('menu.show', $meal->id) }}" class="card-title">{{ $meal->name }}</a>
                                 </h3>
+                                @if($meal->category == 'Kebabs')
                                 <span class="badge label-1">Populaire</span>
-                                <span class="span title-2">€8.50</span>
+                                @endif
+                                <span class="span title-2">€{{ number_format($meal->price, 2) }}</span>
                             </div>
                             <p class="card-text label-1">
-                                Viande de poulet ou agneau, salade fraîche, tomates, oignons et sauce spéciale.
+                                {{ $meal->description }}
                             </p>
                         </div>
                     </div>
                 </li>
-
-                <li>
-                    <div class="menu-card hover:card">
-                        <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                            <img src="{{ asset('assets/images/menu-2.png') }}" width="100" height="100" loading="lazy" alt="Kebab Royal" class="img-cover">
-                        </figure>
-                        <div>
-                            <div class="title-wrapper">
-                                <h3 class="title-3">
-                                    <a href="#" class="card-title">Kebab Royal</a>
-                                </h3>
-                                <span class="span title-2">€10.00</span>
-                            </div>
-                            <p class="card-text label-1">
-                                Viande mixte, fromage, salade, tomates, oignons et sauce au choix.
-                            </p>
-                        </div>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="menu-card hover:card">
-                        <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                            <img src="{{ asset('assets/images/menu-3.png') }}" width="100" height="100" loading="lazy" alt="Assiette Kebab" class="img-cover">
-                        </figure>
-                        <div>
-                            <div class="title-wrapper">
-                                <h3 class="title-3">
-                                    <a href="#" class="card-title">Assiette Kebab</a>
-                                </h3>
-                                <span class="span title-2">€12.00</span>
-                            </div>
-                            <p class="card-text label-1">
-                                Viande grillée, frites maison, salade et sauce au choix.
-                            </p>
-                        </div>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="menu-card hover:card">
-                        <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                            <img src="{{ asset('assets/images/menu-4.png') }}" width="100" height="100" loading="lazy" alt="Grillades" class="img-cover">
-                        </figure>
-                        <div>
-                            <div class="title-wrapper">
-                                <h3 class="title-3">
-                                    <a href="#" class="card-title">Grillades</a>
-                                </h3>
-                                <span class="badge label-1">Nouveau</span>
-                                <span class="span title-2">€15.00</span>
-                            </div>
-                            <p class="card-text label-1">
-                                Brochettes de poulet, agneau ou mixte avec riz et salade.
-                            </p>
-                        </div>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="menu-card hover:card">
-                        <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                            <img src="{{ asset('assets/images/menu-5.png') }}" width="100" height="100" loading="lazy" alt="Falafel" class="img-cover">
-                        </figure>
-                        <div>
-                            <div class="title-wrapper">
-                                <h3 class="title-3">
-                                    <a href="#" class="card-title">Falafel</a>
-                                </h3>
-                                <span class="span title-2">€7.50</span>
-                            </div>
-                            <p class="card-text label-1">
-                                Boulettes de pois chiches, salade fraîche et sauce tahini.
-                            </p>
-                        </div>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="menu-card hover:card">
-                        <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                            <img src="{{ asset('assets/images/menu-6.png') }}" width="100" height="100" loading="lazy" alt="Boissons" class="img-cover">
-                        </figure>
-                        <div>
-                            <div class="title-wrapper">
-                                <h3 class="title-3">
-                                    <a href="#" class="card-title">Boissons</a>
-                                </h3>
-                                <span class="span title-2">€2.50</span>
-                            </div>
-                            <p class="card-text label-1">
-                                Sodas, jus de fruits, eau minérale et boissons chaudes.
-                            </p>
-                        </div>
-                    </div>
-                </li>
+                @endforeach
             </ul>
 
             <p class="menu-text text-center">

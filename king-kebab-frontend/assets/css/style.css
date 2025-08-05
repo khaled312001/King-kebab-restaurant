@@ -598,6 +598,42 @@ body.nav-active { overflow: hidden; }
 
 
 /*-----------------------------------*\
+  #TOP HEADER
+\*-----------------------------------*/
+
+.top-header {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 10px 0;
+  font-size: var(--fontSize-label-2);
+  display: none;
+}
+
+.top-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-item ion-icon {
+  font-size: 16px;
+}
+
+/*-----------------------------------*\
   #HEADER
 \*-----------------------------------*/
 
@@ -605,7 +641,7 @@ body.nav-active { overflow: hidden; }
 
 .header {
   position: fixed;
-  top: 0;
+  top: 51px;
   left: 0;
   width: 100%;
   background-color: transparent;
@@ -1477,6 +1513,19 @@ textarea.input-field {
 
 
   /**
+   * TOP HEADER
+   */
+
+  .top-header {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 4;
+  }
+
+  /**
    * TOPBAR
    */
 
@@ -1524,7 +1573,7 @@ textarea.input-field {
    * HEADER
    */
 
-  .header { top: 51px; }
+  .header { top: 71px; }
 
   .header.active { top: 0; }
 
@@ -1664,6 +1713,16 @@ textarea.input-field {
   /**
    * HEADER
    */
+
+  .top-header {
+    display: block;
+  }
+
+  .top-header .contact-info {
+    gap: 20px;
+  }
+
+  .header { top: 71px; }
 
   .navbar-list { margin-inline: 30px; }
 
@@ -1937,6 +1996,11 @@ textarea.input-field {
    * TOPBAR
    */
 
+  .top-header .contact-info {
+    justify-content: space-between;
+    gap: 230px;
+  }
+
   .topbar .container { max-width: unset; }
 
   .topbar .separator { display: block; }
@@ -1984,6 +2048,8 @@ textarea.input-field {
     transform: scaleX(1);
     opacity: 1;
   }
+
+  .header { top: 71px; }
 
   .header .btn { margin-inline-start: 0; }
 
@@ -2082,6 +2148,8 @@ textarea.input-field {
    * HEADER
    */
 
+  .header { top: 71px; }
+
   .navbar { margin-inline: auto; }
 
 
@@ -2131,12 +2199,20 @@ textarea.input-field {
 
   .features { overflow: visible; }
 
+  .header { top: 71px; }
+
   .features .shape { display: block; }
 
   .features .shape-1 {
     top: -100px;
     right: 0;
   }
+
+  .header { top: 71px; }
+
+  .header { top: 71px; }
+
+  .header { top: 71px; }
 
   .features .shape-2 {
     bottom: 80px;

@@ -193,7 +193,31 @@ if ($is_admin) {
     <link rel="icon" type="image/svg+xml" href="king-kebab-frontend/favicon.svg">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Top Header - Contact Info -->
+    <div class="top-header">
+        <div class="container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+                    <span><?php echo htmlspecialchars($contact_address); ?></span>
+                </div>
+                <div class="contact-item">
+                    <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+                    <span>Ouvert : <?php echo htmlspecialchars($opening_hours); ?></span>
+                </div>
+                <div class="contact-item">
+                    <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+                    <span><?php echo htmlspecialchars($contact_phone); ?></span>
+                </div>
+                <div class="contact-item">
+                    <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                    <span><?php echo htmlspecialchars($contact_email); ?></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header - Navigation -->
     <header class="header">
         <nav class="navbar">
             <div class="container">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'King Kebab - Le vrai goût du kebab')
-@section('description', 'Bienvenue chez King Kebab, le spécialiste du kebab à 20, avenue Marcel Nicolas. Goûtez nos grillades et sandwichs savoureux !')
+@section('description', 'Bienvenue chez King Kebab, le spécialiste du kebab à ' . $settings['contact_address'] . '. Goûtez nos grillades et sandwichs savoureux !')
 
 @section('content')
 <article>
@@ -24,9 +24,7 @@
             </li>
 
             <li class="slider-item" data-hero-slider-item>
-                <div class="slider-bg">
-                    <img src="{{ asset('assets/images/hero-slider-2.jpg') }}" width="1880" height="950" alt="" class="img-cover">
-                </div>
+                
                 <p class="label-2 section-subtitle slider-reveal">Expérience délicieuse</p>
                 <h1 class="display-1 hero-title slider-reveal">
                     Saveurs inspirées par <br>les saisons
@@ -42,7 +40,7 @@
 
             <li class="slider-item" data-hero-slider-item>
                 <div class="slider-bg">
-                    <img src="{{ asset('assets/images/hero-slider-3.jpg') }}" width="1880" height="950" alt="" class="img-cover">
+                    <img src="{{ asset('assets/images/hero-slider-3.jpg') }}" width="1880" height="950" alt="Kebab traditionnel" class="img-cover">
                 </div>
                 <p class="label-2 section-subtitle slider-reveal">Incroyable & délicieux</p>
                 <h1 class="display-1 hero-title slider-reveal">
@@ -54,6 +52,114 @@
                 <a href="{{ route('menu') }}" class="btn btn-primary slider-reveal">
                     <span class="text text-1">Voir notre menu</span>
                     <span class="text text-2" aria-hidden="true">Voir notre menu</span>
+                </a>
+            </li>
+
+            <!-- Nouvelle slide - Kebab Royal -->
+            <li class="slider-item" data-hero-slider-item>
+                <div class="slider-bg">
+                    <img src="{{ asset('assets/images/hero1.jpg') }}" width="1880" height="950" alt="Kebab Royal" class="img-cover">
+                </div>
+                <p class="label-2 section-subtitle slider-reveal">Notre Spécialité</p>
+                <h1 class="display-1 hero-title slider-reveal">
+                    Kebab Royal <br>L'expérience ultime
+                </h1>
+                <p class="body-2 hero-text slider-reveal">
+                    Découvrez notre Kebab Royal, préparé avec des ingrédients frais et des épices authentiques
+                </p>
+                <a href="{{ route('menu') }}" class="btn btn-primary slider-reveal">
+                    <span class="text text-1">Commander maintenant</span>
+                    <span class="text text-2" aria-hidden="true">Commander maintenant</span>
+                </a>
+            </li>
+
+            <!-- Nouvelle slide - Grillades -->
+            <li class="slider-item" data-hero-slider-item>
+                <div class="slider-bg">
+                    <img src="{{ asset('assets/images/hero2.jfif') }}" width="1880" height="950" alt="Grillades fraîches" class="img-cover">
+                </div>
+                <p class="label-2 section-subtitle slider-reveal">Grillades Fraîches</p>
+                <h1 class="display-1 hero-title slider-reveal">
+                    Grillades parfaites <br>Chaque jour
+                </h1>
+                <p class="body-2 hero-text slider-reveal">
+                    Nos grillades sont préparées quotidiennement avec des viandes fraîches et des légumes de saison
+                </p>
+                <a href="{{ route('menu') }}" class="btn btn-primary slider-reveal">
+                    <span class="text text-1">Découvrir nos grillades</span>
+                    <span class="text text-2" aria-hidden="true">Découvrir nos grillades</span>
+                </a>
+            </li>
+
+            <!-- Nouvelle slide - Ambiance -->
+            <li class="slider-item" data-hero-slider-item>
+                <div class="slider-bg">
+                    <img src="{{ asset('assets/images/hero-slider-1') }}" width="1880" height="950" alt="Ambiance conviviale" class="img-cover">
+                </div>
+                <p class="label-2 section-subtitle slider-reveal">Ambiance Chaleureuse</p>
+                <h1 class="display-1 hero-title slider-reveal">
+                    Une expérience <br>inoubliable
+                </h1>
+                <p class="body-2 hero-text slider-reveal">
+                    Profitez d'une ambiance conviviale et d'un service exceptionnel dans notre restaurant
+                </p>
+                <a href="{{ route('reservation') }}" class="btn btn-primary slider-reveal">
+                    <span class="text text-1">Réserver une table</span>
+                    <span class="text text-2" aria-hidden="true">Réserver une table</span>
+                </a>
+            </li>
+
+            <!-- Nouvelle slide - Événements -->
+            <li class="slider-item" data-hero-slider-item>
+                <div class="slider-bg">
+                    <img src="{{ asset('assets/images/event-1.jpg') }}" width="1880" height="950" alt="Événements spéciaux" class="img-cover">
+                </div>
+                <p class="label-2 section-subtitle slider-reveal">Événements & Fêtes</p>
+                <h1 class="display-1 hero-title slider-reveal">
+                    Célébrez vos moments <br>spéciaux
+                </h1>
+                <p class="body-2 hero-text slider-reveal">
+                    Organisez vos événements, anniversaires et fêtes dans notre restaurant avec un service personnalisé
+                </p>
+                <a href="{{ route('contact') }}" class="btn btn-primary slider-reveal">
+                    <span class="text text-1">Réserver un événement</span>
+                    <span class="text text-2" aria-hidden="true">Réserver un événement</span>
+                </a>
+            </li>
+
+            <!-- Nouvelle slide - Qualité -->
+            <li class="slider-item" data-hero-slider-item>
+                <div class="slider-bg">
+                    <img src="{{ asset('assets/images/event-2.jpg') }}" width="1880" height="950" alt="Qualité exceptionnelle" class="img-cover">
+                </div>
+                <p class="label-2 section-subtitle slider-reveal">Qualité Exceptionnelle</p>
+                <h1 class="display-1 hero-title slider-reveal">
+                    Ingrédients frais <br>et authentiques
+                </h1>
+                <p class="body-2 hero-text slider-reveal">
+                    Nous sélectionnons uniquement les meilleurs ingrédients pour vous offrir une expérience culinaire unique
+                </p>
+                <a href="{{ route('about') }}" class="btn btn-primary slider-reveal">
+                    <span class="text text-1">Découvrir notre histoire</span>
+                    <span class="text text-2" aria-hidden="true">Découvrir notre histoire</span>
+                </a>
+            </li>
+
+            <!-- Nouvelle slide - Service -->
+            <li class="slider-item" data-hero-slider-item>
+                <div class="slider-bg">
+                    <img src="{{ asset('assets/images/event-3.jpg') }}" width="1880" height="950" alt="Service exceptionnel" class="img-cover">
+                </div>
+                <p class="label-2 section-subtitle slider-reveal">Service Exceptionnel</p>
+                <h1 class="display-1 hero-title slider-reveal">
+                    Notre équipe <br>à votre service
+                </h1>
+                <p class="body-2 hero-text slider-reveal">
+                    Une équipe dévouée et professionnelle pour vous offrir le meilleur service et la meilleure expérience
+                </p>
+                <a href="{{ route('contact') }}" class="btn btn-primary slider-reveal">
+                    <span class="text text-1">Nous contacter</span>
+                    <span class="text text-2" aria-hidden="true">Nous contacter</span>
                 </a>
             </li>
         </ul>
@@ -143,13 +249,13 @@
                 <p class="label-2 section-subtitle" id="about-label">Notre histoire</p>
                 <h2 class="headline-1 section-title">Chaque saveur raconte une histoire</h2>
                 <p class="section-text">
-                    Situé au 20, avenue Marcel Nicolas, King Kebab vous accueille tous les jours de 11h00 à 23h00.<br>
-                    Téléphone : <a href="tel:0426423743">0426423743</a><br>
+                    Situé au {{ $settings['contact_address'] }}, {{ $settings['site_name'] }} vous accueille tous les jours de {{ $settings['opening_hours'] }}.<br>
+                    Téléphone : <a href="tel:{{ $settings['contact_phone'] }}">{{ $settings['contact_phone'] }}</a><br>
                     Venez découvrir nos spécialités dans une ambiance chaleureuse !
                 </p>
 
                 <div class="contact-label">Réservez par téléphone</div>
-                <a href="tel:0426423743" class="body-1 contact-number hover-underline">0426423743</a>
+                <a href="tel:{{ $settings['contact_phone'] }}" class="body-1 contact-number hover-underline">{{ $settings['contact_phone'] }}</a>
 
                 <a href="{{ route('about') }}" class="btn btn-primary">
                     <span class="text text-1">En savoir plus</span>
@@ -169,6 +275,40 @@
 
             <img src="{{ asset('assets/images/shape-3.png') }}" width="197" height="194" loading="lazy" alt="" class="shape">
         </div>
+    </section>
+
+    <!-- Special Dish Section -->
+    <section class="special-dish text-center" aria-labelledby="dish-label">
+        <div class="special-dish-banner">
+            <img src="{{ asset('assets/images/special-dish-banner.jpg') }}" width="940" height="900" loading="lazy" alt="special dish" class="img-cover">
+        </div>
+
+        <div class="special-dish-content bg-black-10">
+            <div class="container">
+                <img src="{{ asset('assets/images/badge-1.png') }}" width="28" height="41" loading="lazy" alt="badge" class="abs-img">
+
+                <p class="section-subtitle label-2">Plat Spécial</p>
+                <h2 class="headline-1 section-title">Kebab Royal</h2>
+                <p class="section-text">
+                    Notre plat signature, le Kebab Royal, est préparé avec des ingrédients frais et 
+                    des épices sélectionnées avec soin. Une expérience culinaire unique qui vous 
+                    transportera directement au cœur du Moyen-Orient.
+                </p>
+
+                <div class="wrapper">
+                    <del class="del body-3">€12.00</del>
+                    <span class="span body-1">€10.00</span>
+                </div>
+
+                <a href="{{ route('menu') }}" class="btn btn-primary">
+                    <span class="text text-1">Voir tout le menu</span>
+                    <span class="text text-2" aria-hidden="true">Voir tout le menu</span>
+                </a>
+            </div>
+        </div>
+
+        <img src="{{ asset('assets/images/shape-4.png') }}" width="179" height="359" loading="lazy" alt="" class="shape shape-1">
+        <img src="{{ asset('assets/images/shape-9.png') }}" width="351" height="462" loading="lazy" alt="" class="shape shape-2">
     </section>
 
     <!-- Features Section -->
@@ -214,7 +354,7 @@
                             <img src="{{ asset('assets/images/features-icon-4.png') }}" width="100" height="80" loading="lazy" alt="icon">
                         </div>
                         <h3 class="title-2 card-title">Événements & Fêtes</h3>
-                        <p class="label-1 card-text">Organisez vos événements spéciaux chez nous.</p>
+                        <p class="label-1 card-text">Organisez vos événements spéciaux et fêtes dans notre restaurant.</p>
                     </div>
                 </li>
             </ul>

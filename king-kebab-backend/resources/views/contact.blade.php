@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Contact - King Kebab')
-@section('description', 'Contactez King Kebab pour vos réservations et questions. Nous sommes situés au 20, avenue Marcel Nicolas')
+@section('description', 'Contactez King Kebab pour vos réservations et questions. Nous sommes situés au ' . $settings['contact_address'])
 
 @section('content')
 <article>
@@ -22,7 +22,7 @@
                     </div>
                     <h3 class="title-2 card-title">Téléphone</h3>
                     <p class="body-4 card-text">
-                        <a href="tel:0426423743" class="contact-link">0426423743</a>
+                        <a href="tel:{{ $settings['contact_phone'] }}" class="contact-link">{{ $settings['contact_phone'] }}</a>
                     </p>
                 </div>
 
@@ -32,7 +32,7 @@
                     </div>
                     <h3 class="title-2 card-title">Email</h3>
                     <p class="body-4 card-text">
-                        <a href="mailto:contact@kingkebab.com" class="contact-link">contact@kingkebab.com</a>
+                        <a href="mailto:{{ $settings['contact_email'] }}" class="contact-link">{{ $settings['contact_email'] }}</a>
                     </p>
                 </div>
 
@@ -42,8 +42,7 @@
                     </div>
                     <h3 class="title-2 card-title">Adresse</h3>
                     <p class="body-4 card-text">
-                        20, avenue Marcel Nicolas<br>
-                        France
+                        {{ $settings['contact_address'] }}
                     </p>
                 </div>
 
@@ -53,8 +52,7 @@
                     </div>
                     <h3 class="title-2 card-title">Horaires</h3>
                     <p class="body-4 card-text">
-                        Tous les jours<br>
-                        11h00 - 23h00
+                        {{ $settings['opening_hours'] }}
                     </p>
                 </div>
             </div>
@@ -65,86 +63,68 @@
     <section class="reservation">
         <div class="container">
             <div class="form reservation-form bg-black-10">
-                <form action="{{ route('reservation') }}" method="POST" class="form-left">
+                <form action="{{ route('contact.store') }}" method="POST" class="form-left">
                     @csrf
-                    <h2 class="headline-1 text-center">Réservation en ligne</h2>
+                    <h2 class="headline-1 text-center">Envoyez-nous un message</h2>
                     <p class="form-text text-center">
-                        Demande de réservation <a href="tel:0426423743" class="link">0426423743</a>
-                        ou remplissez le formulaire
+                        Contactez-nous pour toute question ou demande spéciale
                     </p>
 
+                    @if(session('success'))
+                    <div class="alert alert-success" style="background: #d4edda; color: #155724; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+
+                    @if($errors && $errors->any())
+                    <div class="alert alert-error" style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
                     <div class="input-wrapper">
-                        <input type="text" name="name" placeholder="Votre nom" autocomplete="off" class="input-field" required>
-                        <input type="tel" name="phone" placeholder="Numéro de téléphone" autocomplete="off" class="input-field" required>
+                        <input type="text" name="name" placeholder="Votre nom" autocomplete="off" class="input-field" value="{{ old('name') }}" required>
+                        <input type="email" name="email" placeholder="Votre email" autocomplete="off" class="input-field" value="{{ old('email') }}" required>
                     </div>
 
                     <div class="input-wrapper">
-                        <div class="icon-wrapper">
-                            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
-                            <select name="person" class="input-field" required>
-                                <option value="">Nombre de personnes</option>
-                                <option value="1">1 personne</option>
-                                <option value="2">2 personnes</option>
-                                <option value="3">3 personnes</option>
-                                <option value="4">4 personnes</option>
-                                <option value="5">5 personnes</option>
-                                <option value="6">6 personnes</option>
-                                <option value="7">7 personnes</option>
-                            </select>
-                            <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
-                        </div>
-
-                        <div class="icon-wrapper">
-                            <ion-icon name="calendar-clear-outline" aria-hidden="true"></ion-icon>
-                            <input type="date" name="reservation-date" class="input-field" required>
-                            <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
-                        </div>
-
-                        <div class="icon-wrapper">
-                            <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-                            <select name="reservation-time" class="input-field" required>
-                                <option value="">Heure de réservation</option>
-                                <option value="11:00">11:00</option>
-                                <option value="12:00">12:00</option>
-                                <option value="13:00">13:00</option>
-                                <option value="14:00">14:00</option>
-                                <option value="15:00">15:00</option>
-                                <option value="16:00">16:00</option>
-                                <option value="17:00">17:00</option>
-                                <option value="18:00">18:00</option>
-                                <option value="19:00">19:00</option>
-                                <option value="20:00">20:00</option>
-                                <option value="21:00">21:00</option>
-                                <option value="22:00">22:00</option>
-                            </select>
-                            <ion-icon name="chevron-down" aria-hidden="true"></ion-icon>
-                        </div>
+                        <input type="text" name="subject" placeholder="Sujet" autocomplete="off" class="input-field" value="{{ old('subject') }}" required>
                     </div>
 
-                    <textarea name="message" placeholder="Message (optionnel)" autocomplete="off" class="input-field"></textarea>
+                    <textarea name="message" placeholder="Votre message" autocomplete="off" class="input-field" required>{{ old('message') }}</textarea>
 
                     <button type="submit" class="btn btn-secondary">
-                        <span class="text text-1">Réserver</span>
-                        <span class="text text-2" aria-hidden="true">Réserver</span>
+                        <span class="text text-1">Envoyer le message</span>
+                        <span class="text text-2" aria-hidden="true">Envoyer le message</span>
                     </button>
                 </form>
 
                 <div class="form-right text-center" style="background-image: url('{{ asset('assets/images/form-pattern.png') }}')">
-                    <h2 class="headline-1 text-center">Contact</h2>
-                    <p class="contact-label">Demande de réservation</p>
-                    <a href="tel:0426423743" class="body-1 contact-number hover-underline">0426423743</a>
+                    <h2 class="headline-1 text-center">Informations</h2>
+                    <p class="contact-label">Adresse</p>
+                    <address class="body-4">
+                        {{ $settings['contact_address'] }}
+                    </address>
 
                     <div class="separator"></div>
 
-                    <p class="contact-label">Adresse</p>
-                    <address class="body-4">
-                        20, avenue Marcel Nicolas
-                    </address>
+                    <p class="contact-label">Téléphone</p>
+                    <a href="tel:{{ $settings['contact_phone'] }}" class="body-1 contact-number hover-underline">{{ $settings['contact_phone'] }}</a>
+
+                    <div class="separator"></div>
+
+                    <p class="contact-label">Email</p>
+                    <a href="mailto:{{ $settings['contact_email'] }}" class="body-1 contact-number hover-underline">{{ $settings['contact_email'] }}</a>
+
+                    <div class="separator"></div>
 
                     <p class="contact-label">Horaires</p>
                     <p class="body-4">
-                        Tous les jours <br>
-                        11h00 - 23h00
+                        {{ $settings['opening_hours'] }}
                     </p>
                 </div>
             </div>

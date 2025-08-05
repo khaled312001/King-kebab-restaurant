@@ -12,21 +12,13 @@
                 <p class="label-2 section-subtitle" id="about-label">Notre histoire</p>
                 <h2 class="headline-1 section-title">Chaque saveur raconte une histoire</h2>
                 <p class="section-text">
-                    Fondé avec passion et dévouement, King Kebab est né de l'amour de la cuisine traditionnelle 
-                    et du désir de partager les saveurs authentiques du Moyen-Orient avec notre communauté.
-                </p>
-                <p class="section-text">
-                    Situé au cœur de la ville au 20, avenue Marcel Nicolas, notre restaurant vous accueille 
-                    dans une ambiance chaleureuse et conviviale, où chaque plat est préparé avec soin et 
-                    des ingrédients frais de qualité.
-                </p>
-                <p class="section-text">
-                    Notre équipe de chefs expérimentés combine tradition et innovation pour créer des plats 
-                    uniques qui racontent une histoire de saveurs, d'épices et de passion culinaire.
+                    {{ $settings['site_name'] }} est né de la passion pour la cuisine traditionnelle et le désir de partager 
+                    les saveurs authentiques du Moyen-Orient avec notre communauté. Depuis notre ouverture, 
+                    nous nous efforçons de créer une expérience culinaire unique qui combine tradition et modernité.
                 </p>
 
                 <div class="contact-label">Réservez par téléphone</div>
-                <a href="tel:0426423743" class="body-1 contact-number hover-underline">0426423743</a>
+                <a href="tel:{{ $settings['contact_phone'] }}" class="body-1 contact-number hover-underline">{{ $settings['contact_phone'] }}</a>
 
                 <a href="{{ route('menu') }}" class="btn btn-primary">
                     <span class="text text-1">Voir notre menu</span>
@@ -48,6 +40,59 @@
         </div>
     </section>
 
+    <!-- Features Section -->
+    <section class="section features text-center" aria-label="features">
+        <div class="container">
+            <p class="section-subtitle label-2">Pourquoi nous choisir</p>
+            <h2 class="headline-1 section-title">Nos valeurs</h2>
+
+            <ul class="grid-list">
+                <li class="feature-item">
+                    <div class="feature-card">
+                        <div class="card-icon">
+                            <img src="{{ asset('assets/images/features-icon-1.png') }}" width="100" height="80" loading="lazy" alt="icon">
+                        </div>
+                        <h3 class="title-2 card-title">Qualité exceptionnelle</h3>
+                        <p class="label-1 card-text">Nous sélectionnons uniquement les meilleurs ingrédients frais pour garantir une qualité exceptionnelle dans chaque plat.</p>
+                    </div>
+                </li>
+
+                <li class="feature-item">
+                    <div class="feature-card">
+                        <div class="card-icon">
+                            <img src="{{ asset('assets/images/features-icon-2.png') }}" width="100" height="80" loading="lazy" alt="icon">
+                        </div>
+                        <h3 class="title-2 card-title">Tradition respectée</h3>
+                        <p class="label-1 card-text">Nos recettes sont transmises de génération en génération, préservant l'authenticité des saveurs traditionnelles.</p>
+                    </div>
+                </li>
+
+                <li class="feature-item">
+                    <div class="feature-card">
+                        <div class="card-icon">
+                            <img src="{{ asset('assets/images/features-icon-3.png') }}" width="100" height="80" loading="lazy" alt="icon">
+                        </div>
+                        <h3 class="title-2 card-title">Service personnalisé</h3>
+                        <p class="label-1 card-text">Notre équipe s'engage à offrir un service chaleureux et personnalisé pour rendre votre expérience mémorable.</p>
+                    </div>
+                </li>
+
+                <li class="feature-item">
+                    <div class="feature-card">
+                        <div class="card-icon">
+                            <img src="{{ asset('assets/images/features-icon-4.png') }}" width="100" height="80" loading="lazy" alt="icon">
+                        </div>
+                        <h3 class="title-2 card-title">Ambiance conviviale</h3>
+                        <p class="label-1 card-text">Créez des moments inoubliables dans notre restaurant où chaque détail est pensé pour votre confort.</p>
+                    </div>
+                </li>
+            </ul>
+
+            <img src="{{ asset('assets/images/shape-7.png') }}" width="208" height="178" loading="lazy" alt="shape" class="shape shape-1">
+            <img src="{{ asset('assets/images/shape-8.png') }}" width="120" height="115" loading="lazy" alt="shape" class="shape shape-2">
+        </div>
+    </section>
+
     <!-- Special Dish Section -->
     <section class="special-dish text-center" aria-labelledby="dish-label">
         <div class="special-dish-banner">
@@ -58,22 +103,21 @@
             <div class="container">
                 <img src="{{ asset('assets/images/badge-1.png') }}" width="28" height="41" loading="lazy" alt="badge" class="abs-img">
 
-                <p class="section-subtitle label-2">Plat Spécial</p>
+                <p class="section-subtitle label-2">Notre spécialité</p>
                 <h2 class="headline-1 section-title">Kebab Royal</h2>
                 <p class="section-text">
-                    Notre plat signature, le Kebab Royal, est préparé avec des ingrédients frais et 
-                    des épices sélectionnées avec soin. Une expérience culinaire unique qui vous 
-                    transportera directement au cœur du Moyen-Orient.
+                    Notre plat signature, le Kebab Royal, représente l'excellence de notre cuisine. 
+                    Préparé avec des ingrédients frais et des épices sélectionnées avec soin, 
+                    chaque bouchée vous transportera dans un voyage culinaire unique.
                 </p>
 
                 <div class="wrapper">
-                    <del class="del body-3">€12.00</del>
                     <span class="span body-1">€10.00</span>
                 </div>
 
                 <a href="{{ route('menu') }}" class="btn btn-primary">
-                    <span class="text text-1">Voir tout le menu</span>
-                    <span class="text text-2" aria-hidden="true">Voir tout le menu</span>
+                    <span class="text text-1">Découvrir notre menu</span>
+                    <span class="text text-2" aria-hidden="true">Découvrir notre menu</span>
                 </a>
             </div>
         </div>
@@ -82,56 +126,58 @@
         <img src="{{ asset('assets/images/shape-9.png') }}" width="351" height="462" loading="lazy" alt="" class="shape shape-2">
     </section>
 
-    <!-- Features Section -->
-    <section class="section features text-center" aria-label="features">
+    <!-- Contact Section -->
+    <section class="section contact text-center" aria-label="contact">
         <div class="container">
-            <p class="section-subtitle label-2">Pourquoi nous choisir</p>
-            <h2 class="headline-1 section-title">Nos forces</h2>
+            <p class="section-subtitle label-2">Venez nous rendre visite</p>
+            <h2 class="headline-1 section-title">Informations pratiques</h2>
 
-            <ul class="grid-list">
-                <li class="feature-item">
-                    <div class="feature-card">
-                        <div class="card-icon">
-                            <img src="{{ asset('assets/images/features-icon-1.png') }}" width="100" height="80" loading="lazy" alt="icon">
-                        </div>
-                        <h3 class="title-2 card-title">Nourriture hygiénique</h3>
-                        <p class="label-1 card-text">Nous respectons les plus hauts standards d'hygiène et de sécurité alimentaire.</p>
+            <div class="contact-info grid-list">
+                <div class="contact-card">
+                    <div class="card-icon">
+                        <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
                     </div>
-                </li>
+                    <h3 class="title-2 card-title">Adresse</h3>
+                    <p class="body-4 card-text">
+                        {{ $settings['contact_address'] }}
+                    </p>
+                </div>
 
-                <li class="feature-item">
-                    <div class="feature-card">
-                        <div class="card-icon">
-                            <img src="{{ asset('assets/images/features-icon-2.png') }}" width="100" height="80" loading="lazy" alt="icon">
-                        </div>
-                        <h3 class="title-2 card-title">Environnement frais</h3>
-                        <p class="label-1 card-text">Un cadre agréable et propre pour votre confort et votre bien-être.</p>
+                <div class="contact-card">
+                    <div class="card-icon">
+                        <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
                     </div>
-                </li>
+                    <h3 class="title-2 card-title">Téléphone</h3>
+                    <p class="body-4 card-text">
+                        <a href="tel:{{ $settings['contact_phone'] }}" class="contact-link">{{ $settings['contact_phone'] }}</a>
+                    </p>
+                </div>
 
-                <li class="feature-item">
-                    <div class="feature-card">
-                        <div class="card-icon">
-                            <img src="{{ asset('assets/images/features-icon-3.png') }}" width="100" height="80" loading="lazy" alt="icon">
-                        </div>
-                        <h3 class="title-2 card-title">Chefs qualifiés</h3>
-                        <p class="label-1 card-text">Nos chefs expérimentés préparent chaque plat avec passion et expertise.</p>
+                <div class="contact-card">
+                    <div class="card-icon">
+                        <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
                     </div>
-                </li>
+                    <h3 class="title-2 card-title">Horaires</h3>
+                    <p class="body-4 card-text">
+                        {{ $settings['opening_hours'] }}
+                    </p>
+                </div>
 
-                <li class="feature-item">
-                    <div class="feature-card">
-                        <div class="card-icon">
-                            <img src="{{ asset('assets/images/features-icon-4.png') }}" width="100" height="80" loading="lazy" alt="icon">
-                        </div>
-                        <h3 class="title-2 card-title">Événements & Fêtes</h3>
-                        <p class="label-1 card-text">Organisez vos événements spéciaux et fêtes dans notre restaurant.</p>
+                <div class="contact-card">
+                    <div class="card-icon">
+                        <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
                     </div>
-                </li>
-            </ul>
+                    <h3 class="title-2 card-title">Email</h3>
+                    <p class="body-4 card-text">
+                        <a href="mailto:{{ $settings['contact_email'] }}" class="contact-link">{{ $settings['contact_email'] }}</a>
+                    </p>
+                </div>
+            </div>
 
-            <img src="{{ asset('assets/images/shape-7.png') }}" width="208" height="178" loading="lazy" alt="shape" class="shape shape-1">
-            <img src="{{ asset('assets/images/shape-8.png') }}" width="120" height="115" loading="lazy" alt="shape" class="shape shape-2">
+            <a href="{{ route('reservation') }}" class="btn btn-primary">
+                <span class="text text-1">Réserver une table</span>
+                <span class="text text-2" aria-hidden="true">Réserver une table</span>
+            </a>
         </div>
     </section>
 </article>
