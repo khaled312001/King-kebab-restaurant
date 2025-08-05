@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
+use App\Models\MenuCategory;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('home');
+        $featuredMeals = Menu::available()->limit(6)->get();
+        
+        return view('home', compact('featuredMeals'));
     }
 
     public function menu()
     {
-        return view('menu');
+        $categories = MenuCategory::with('menus')->get();
+        $menus = Menu::available()->get();
+        
+        return view('menu', compact('categories', 'menus'));
     }
 
     public function about()
@@ -30,4 +37,6 @@ class HomeController extends Controller
     {
         return view('reservation');
     }
+
+
 } 

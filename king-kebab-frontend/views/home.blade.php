@@ -10,14 +10,16 @@
         <ul class="hero-slider" data-hero-slider>
             <li class="slider-item active" data-hero-slider-item>
                 <div class="slider-bg">
-                    <img src="{{ asset('assets/images/hero-slider-1.jpg') }}" alt="Kebab maison" class="img-cover" style="object-fit:cover;width:100%;height:100%;"/>
+                    <img src="king-kebab-frontend/assets/images/hero-slider-1.jpg" alt="Kebab maison" class="img-cover" style="object-fit:cover;width:100%;height:100%;"/>
                 </div>
                 <p class="label-2 section-subtitle slider-reveal">Tradition & Hygiène</p>
-                <h1 class="display-1 hero-title slider-reveal">Le vrai goût du kebab</h1>
+                <h1 class="display-1 hero-title slider-reveal">
+                    Le vrai goût du kebab
+                </h1>
                 <p class="body-2 hero-text slider-reveal">
                     Savourez nos grillades, sandwichs et assiettes généreuses dans une ambiance conviviale !
                 </p>
-                <a href="{{ route('menu') }}" class="btn btn-primary slider-reveal">
+                <a href="#menu" class="btn btn-primary slider-reveal">
                     <span class="text text-1">Voir le menu</span>
                     <span class="text text-2" aria-hidden="true">Voir le menu</span>
                 </a>
@@ -25,35 +27,37 @@
 
             <li class="slider-item" data-hero-slider-item>
                 <div class="slider-bg">
-                    <img src="{{ asset('assets/images/hero-slider-2.jpg') }}" width="1880" height="950" alt="" class="img-cover">
+                    <img src="king-kebab-frontend/assets/images/hero-slider-2.jpg" width="1880" height="950" alt="" class="img-cover">
                 </div>
-                <p class="label-2 section-subtitle slider-reveal">Expérience délicieuse</p>
+                <p class="label-2 section-subtitle slider-reveal">delightful experience</p>
                 <h1 class="display-1 hero-title slider-reveal">
-                    Saveurs inspirées par <br>les saisons
+                    Flavors Inspired by <br>
+                    the Seasons
                 </h1>
                 <p class="body-2 hero-text slider-reveal">
-                    Venez en famille et ressentez la joie d'une nourriture savoureuse
+                    Come with family & feel the joy of mouthwatering food
                 </p>
-                <a href="{{ route('menu') }}" class="btn btn-primary slider-reveal">
-                    <span class="text text-1">Voir notre menu</span>
-                    <span class="text text-2" aria-hidden="true">Voir notre menu</span>
+                <a href="#" class="btn btn-primary slider-reveal">
+                    <span class="text text-1">View Our Menu</span>
+                    <span class="text text-2" aria-hidden="true">View Our Menu</span>
                 </a>
             </li>
 
             <li class="slider-item" data-hero-slider-item>
                 <div class="slider-bg">
-                    <img src="{{ asset('assets/images/hero-slider-3.jpg') }}" width="1880" height="950" alt="" class="img-cover">
+                    <img src="king-kebab-frontend/assets/images/hero-slider-3.jpg" width="1880" height="950" alt="" class="img-cover">
                 </div>
-                <p class="label-2 section-subtitle slider-reveal">Incroyable & délicieux</p>
+                <p class="label-2 section-subtitle slider-reveal">amazing & delicious</p>
                 <h1 class="display-1 hero-title slider-reveal">
-                    Où chaque saveur <br>raconte une histoire
+                    Where every flavor <br>
+                    tells a story
                 </h1>
                 <p class="body-2 hero-text slider-reveal">
-                    Venez en famille et ressentez la joie d'une nourriture savoureuse
+                    Come with family & feel the joy of mouthwatering food
                 </p>
-                <a href="{{ route('menu') }}" class="btn btn-primary slider-reveal">
-                    <span class="text text-1">Voir notre menu</span>
-                    <span class="text text-2" aria-hidden="true">Voir notre menu</span>
+                <a href="#" class="btn btn-primary slider-reveal">
+                    <span class="text text-1">View Our Menu</span>
+                    <span class="text text-2" aria-hidden="true">View Our Menu</span>
                 </a>
             </li>
         </ul>
@@ -66,9 +70,9 @@
             <ion-icon name="chevron-forward"></ion-icon>
         </button>
 
-        <a href="{{ route('reservation') }}" class="hero-btn has-after">
-            <img src="{{ asset('assets/images/hero-icon.png') }}" width="48" height="48" alt="booking icon">
-            <span class="label-2 text-center span">Réserver une table</span>
+        <a href="#" class="hero-btn has-after">
+            <img src="king-kebab-frontend/assets/images/hero-icon.png" width="48" height="48" alt="booking icon">
+            <span class="label-2 text-center span">Book A Table</span>
         </a>
     </section>
 
