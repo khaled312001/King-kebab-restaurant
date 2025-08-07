@@ -9,7 +9,7 @@
   <!-- Primary meta tags -->
     <title>@yield('title', 'King Kebab - Le vrai goût du kebab')</title>
   <meta name="title" content="@yield('title', 'King Kebab - Le vrai goût du kebab')">
-  <meta name="description" content="@yield('description', 'Bienvenue chez King Kebab, le spécialiste du kebab. Goûtez nos grillades et sandwichs savoureux !')">
+  <meta name="description" content="@yield('description', 'Découvrez les meilleurs kebabs traditionnels et la cuisine du Moyen-Orient')">
     
     <!-- Favicon -->
   <link rel="shortcut icon" href="{{ asset('assets/images/logo.svg') }}" type="image/svg+xml">
@@ -20,10 +20,14 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
     
   <!-- Custom css link -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}?v={{ time() }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}?v={{ time() }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v={{ time() }}">
+                    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+                <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}?v={{ time() }}">
+                <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}?v={{ time() }}">
+                <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}?v={{ time() }}">
+                <link rel="stylesheet" href="{{ asset('assets/css/reservation.css') }}?v={{ time() }}">
+                <link rel="stylesheet" href="{{ asset('assets/css/contact.css') }}?v={{ time() }}">
+                <link rel="stylesheet" href="{{ asset('assets/css/about.css') }}?v={{ time() }}">
+                <link rel="stylesheet" href="{{ asset('assets/css/menu.css') }}?v={{ time() }}">
 
   <!-- Ionicons for icons -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -299,6 +303,18 @@
       }
     }
 
+    /* Scroll Progress Indicator */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #c80000, #ffd700);
+      z-index: 1002;
+      transition: width 0.1s ease;
+    }
+
 
   </style>
 </head>
@@ -310,6 +326,9 @@
         <div class="circle"></div>
         <p class="text">King Kebab</p>
     </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress"></div>
 
     <!-- Top Bar -->
   

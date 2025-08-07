@@ -311,10 +311,10 @@
                             <span class="ingredient-tag">Sauce</span>
                         </div>
                         <div class="menu-actions">
-                            <button class="menu-btn menu-btn-details">
+                            <a href="{{ route('menu.show', 1) }}" class="menu-btn menu-btn-details">
                                 <i class="fas fa-info-circle"></i>
                                 Détails
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -338,10 +338,10 @@
                             <span class="ingredient-tag">Légumes</span>
                         </div>
                         <div class="menu-actions">
-                            <button class="menu-btn menu-btn-details">
+                            <a href="{{ route('menu.show', 2) }}" class="menu-btn menu-btn-details">
                                 <i class="fas fa-info-circle"></i>
                                 Détails
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -365,10 +365,10 @@
                             <span class="ingredient-tag">Frites</span>
                         </div>
                         <div class="menu-actions">
-                            <button class="menu-btn menu-btn-details">
+                            <a href="{{ route('menu.show', 3) }}" class="menu-btn menu-btn-details">
                                 <i class="fas fa-info-circle"></i>
                                 Détails
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -392,10 +392,10 @@
                             <span class="ingredient-tag">Légumes</span>
                         </div>
                         <div class="menu-actions">
-                            <button class="menu-btn menu-btn-details">
+                            <a href="{{ route('menu.show', 4) }}" class="menu-btn menu-btn-details">
                                 <i class="fas fa-info-circle"></i>
                                 Détails
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

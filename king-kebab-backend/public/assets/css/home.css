@@ -241,6 +241,10 @@
   color: white;
   box-shadow: 0 6px 20px rgba(200,0,0,0.3);
   border: 2px solid transparent;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .menu-btn-details::before {

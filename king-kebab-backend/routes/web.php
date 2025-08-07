@@ -48,6 +48,9 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', [AdminController::class, 'login'])->name('admin.login.post');
     Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     
+    // Redirect /admin/articles to public articles page
+    Route::get('/articles', [ArticleController::class, 'index'])->name('admin.articles.public');
+    
     // Admin Dashboard (Protected)
     Route::middleware(['auth'])->group(function () {
         Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -69,8 +72,9 @@ Route::prefix('admin')->group(function () {
         // Newsletter Management
         Route::resource('newsletters', AdminNewsletterController::class);
         
-        // Articles Management
-        Route::resource('articles', AdminArticleController::class);
+        // Articles Management (Admin)
+        Route::resource('articles', AdminArticleController::class)->except(['index']);
+        Route::get('articles', [AdminArticleController::class, 'index'])->name('admin.articles');
         
         // Settings Management
         Route::get('settings', [AdminSettingController::class, 'index'])->name('admin.settings');
