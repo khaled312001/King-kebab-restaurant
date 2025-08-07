@@ -33,17 +33,43 @@ const addEventOnElements = function (elements, eventType, callback) {
  * NAVBAR
  */
 
-const navbar = document.querySelector("[data-navbar]");
+const navbar = document.querySelector(".mobile-sidebar");
 const navTogglers = document.querySelectorAll("[data-nav-toggler]");
-const overlay = document.querySelector("[data-overlay]");
+const overlay = document.querySelector(".mobile-overlay");
 
 const toggleNavbar = function () {
-  navbar.classList.toggle("active");
-  overlay.classList.toggle("active");
-  document.body.classList.toggle("nav-active");
+  if (navbar && overlay) {
+    navbar.classList.toggle("active");
+    overlay.classList.toggle("active");
+    document.body.classList.toggle("nav-active");
+  }
 }
 
 addEventOnElements(navTogglers, "click", toggleNavbar);
+
+// Auto close navbar when clicking on links
+const navbarLinks = document.querySelectorAll(".mobile-sidebar .sidebar-link");
+const closeNavbar = function () {
+  if (navbar && overlay) {
+    navbar.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.classList.remove("nav-active");
+  }
+}
+
+addEventOnElements(navbarLinks, "click", closeNavbar);
+
+// Close navbar when clicking on overlay
+if (overlay) {
+  overlay.addEventListener("click", closeNavbar);
+}
+
+// Close navbar when pressing Escape key
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape" && navbar && navbar.classList.contains("active")) {
+    closeNavbar();
+  }
+});
 
 
 

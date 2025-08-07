@@ -14,25 +14,43 @@
         
         <div class="container">
             <div class="hero-content">
-                <p class="label-2 section-subtitle hero-reveal">Réservez votre table</p>
-                <h1 class="display-1 hero-title hero-reveal">Une expérience culinaire unique</h1>
+                <div class="hero-badge">
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    <span>Réservation en ligne</span>
+                </div>
+                <h1 class="display-1 hero-title hero-reveal">Réservez votre table</h1>
                 <p class="body-2 hero-text hero-reveal">
-                    Réservez votre table chez King Kebab et préparez-vous à vivre une expérience gastronomique exceptionnelle
+                    Une expérience culinaire unique vous attend chez King Kebab
                 </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Années d'expérience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Clients satisfaits</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Service disponible</span>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Floating Elements -->
-        <div class="floating-elements">
-            <div class="floating-icon" style="--delay: 0s;">
-                <ion-icon name="restaurant-outline"></ion-icon>
-            </div>
-            <div class="floating-icon" style="--delay: 2s;">
-                <ion-icon name="wine-outline"></ion-icon>
-            </div>
-            <div class="floating-icon" style="--delay: 4s;">
-                <ion-icon name="heart-outline"></ion-icon>
-            </div>
+        <!-- Animated Background Elements -->
+        <div class="animated-bg">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+            <div class="floating-shape shape-4"></div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>Faites défiler pour réserver</span>
         </div>
     </section>
 
@@ -49,8 +67,8 @@
                             </div>
                             <h2 class="form-title">Réservation en ligne</h2>
                             <p class="form-subtitle">
-                                Demande de réservation <a href="tel:{{ $settings['contact_phone'] }}" class="contact-link">{{ $settings['contact_phone'] }}</a>
-                                ou remplissez le formulaire ci-dessous
+                                Ou appelez-nous directement au 
+                                <a href="tel:{{ $settings['contact_phone'] }}" class="contact-link">{{ $settings['contact_phone'] }}</a>
                             </p>
                         </div>
 
@@ -80,11 +98,13 @@
                                     <div class="input-wrapper">
                                         <ion-icon name="person-outline" class="input-icon"></ion-icon>
                                         <input type="text" name="name" placeholder="Votre nom complet" autocomplete="off" class="input-field" value="{{ old('name') }}" required>
+                                        <div class="input-focus-border"></div>
                                     </div>
                                     
                                     <div class="input-wrapper">
                                         <ion-icon name="call-outline" class="input-icon"></ion-icon>
                                         <input type="tel" name="phone" placeholder="Numéro de téléphone" autocomplete="off" class="input-field" value="{{ old('phone') }}" required>
+                                        <div class="input-focus-border"></div>
                                     </div>
                                 </div>
                             </div>
@@ -104,11 +124,13 @@
                                             <option value="7" {{ old('person') == '7' ? 'selected' : '' }}>7 personnes</option>
                                         </select>
                                         <ion-icon name="chevron-down" class="select-arrow"></ion-icon>
+                                        <div class="input-focus-border"></div>
                                     </div>
 
                                     <div class="input-wrapper">
                                         <ion-icon name="calendar-clear-outline" class="input-icon"></ion-icon>
                                         <input type="date" name="reservation_date" class="input-field" value="{{ old('reservation_date') }}" required>
+                                        <div class="input-focus-border"></div>
                                     </div>
                                 </div>
                             </div>
@@ -132,6 +154,7 @@
                                         <option value="22:00" {{ old('reservation_time') == '22:00' ? 'selected' : '' }}>22:00</option>
                                     </select>
                                     <ion-icon name="chevron-down" class="select-arrow"></ion-icon>
+                                    <div class="input-focus-border"></div>
                                 </div>
                             </div>
 
@@ -139,13 +162,17 @@
                                 <div class="input-wrapper">
                                     <ion-icon name="chatbubble-outline" class="input-icon"></ion-icon>
                                     <textarea name="message" placeholder="Message spécial (optionnel) - Allergies, demandes particulières..." autocomplete="off" class="input-field textarea-field">{{ old('message') }}</textarea>
+                                    <div class="input-focus-border"></div>
                                 </div>
                             </div>
 
                             <button type="submit" class="btn btn-primary submit-btn">
-                                <ion-icon name="calendar-outline" class="btn-icon"></ion-icon>
-                                <span class="text text-1">Confirmer la réservation</span>
-                                <span class="text text-2" aria-hidden="true">Confirmer la réservation</span>
+                                <div class="btn-content">
+                                    <ion-icon name="calendar-outline" class="btn-icon"></ion-icon>
+                                    <span class="text text-1">Confirmer la réservation</span>
+                                    <span class="text text-2" aria-hidden="true">Confirmer la réservation</span>
+                                </div>
+                                <div class="btn-glow"></div>
                             </button>
                         </form>
                     </div>
@@ -280,6 +307,7 @@
         </div>
     </section>
 </article>
+@endsection
 
 <!-- Custom Styles for Reservation Page -->
 <style>
@@ -786,5 +814,4 @@
             transform: translateY(0);
         }
     }
-</style>
-@endsection 
+</style> 

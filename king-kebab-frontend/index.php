@@ -65,47 +65,7 @@ $restaurant_info = [
     - #TOP BAR
   -->
 
-  <div class="topbar">
-    <div class="container">
-
-      <address class="topbar-item">
-        <div class="icon">
-          <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
-        </div>
-        <span class="span">
-          <?php echo $restaurant_info['address']; ?>
-        </span>
-      </address>
-
-      <div class="separator"></div>
-
-      <div class="topbar-item item-2">
-        <div class="icon">
-          <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-        </div>
-        <span class="span">Ouvert : <?php echo $restaurant_info['hours']; ?></span>
-      </div>
-
-      <div class="topbar-item">
-        <div class="icon">
-          <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
-        </div>
-        <a href="tel:<?php echo $restaurant_info['phone']; ?>" class="span"><?php echo $restaurant_info['phone']; ?></a>
-      </div>
-
-      <div class="separator"></div>
-
-      <a href="mailto:<?php echo $restaurant_info['email']; ?>" class="topbar-item link">
-        <div class="icon">
-          <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
-        </div>
-
-        <span class="span"><?php echo $restaurant_info['email']; ?></span>
-      </a>
-
-    </div>
-  </div>
-
+ 
   <!-- 
     - #HEADER
   -->
@@ -170,9 +130,7 @@ $restaurant_info = [
             <?php echo $restaurant_info['address']; ?>
           </address>
 
-          <p class="body-4 navbar-text">Ouvert : <?php echo $restaurant_info['hours']; ?></p>
-
-          <a href="mailto:<?php echo $restaurant_info['email']; ?>" class="body-4 sidebar-link"><?php echo $restaurant_info['email']; ?></a>
+        
 
           <div class="separator"></div>
 
@@ -237,9 +195,7 @@ $restaurant_info = [
 
           <li class="slider-item" data-hero-slider-item>
 
-            <div class="slider-bg">
-              <img src="./assets-original/images/hero-slider-2.jpg" width="1880" height="950" alt="" class="img-cover">
-            </div>
+            
 
             <p class="label-2 section-subtitle slider-reveal">Expérience délicieuse</p>
 

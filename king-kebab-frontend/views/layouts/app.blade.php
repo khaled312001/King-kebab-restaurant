@@ -19,6 +19,74 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/alerts.css') }}">
     
+    <!-- WhatsApp Button Styles -->
+    <style>
+        /* WhatsApp Floating Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: whatsappPulse 2s infinite;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+            background: #128C7E;
+            color: white;
+        }
+
+        .whatsapp-btn .whatsapp-icon {
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s ease;
+            filter: brightness(0) invert(1);
+        }
+
+        .whatsapp-btn:hover .whatsapp-icon {
+            transform: scale(1.2);
+        }
+
+        @keyframes whatsappPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+                bottom: 15px;
+                left: 15px;
+            }
+
+            .whatsapp-btn .whatsapp-icon {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    </style>
+    
     @stack('styles')
 </head>
 <body id="top">
@@ -28,42 +96,7 @@
         <p class="text">King Kebab</p>
     </div>
 
-    <!-- Top Bar -->
-    <div class="topbar">
-        <div class="container">
-            <address class="topbar-item">
-                <div class="icon">
-                    <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
-                </div>
-                <span class="span">20, avenue Marcel Nicolas</span>
-            </address>
-
-            <div class="separator"></div>
-
-            <div class="topbar-item item-2">
-                <div class="icon">
-                    <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-                </div>
-                <span class="span">Ouvert : 11h00 - 23h00</span>
-            </div>
-
-            <div class="topbar-item">
-                <div class="icon">
-                    <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
-                </div>
-                <a href="tel:0426423743" class="span">0426423743</a>
-            </div>
-
-            <div class="separator"></div>
-
-            <a href="mailto:contact@kingkebab.com" class="topbar-item link">
-                <div class="icon">
-                    <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
-                </div>
-                <span class="span">contact@kingkebab.com</span>
-            </a>
-        </div>
-    </div>
+  
 
     <!-- Header -->
     <header class="header" data-header>
@@ -111,15 +144,7 @@
                     </li>
                 </ul>
 
-                <div class="text-center">
-                    <p class="headline-1 navbar-title">Bienvenue chez King Kebab</p>
-                    <address class="body-4">20, avenue Marcel Nicolas</address>
-                    <p class="body-4 navbar-text">Ouvert : 11h00 - 23h00</p>
-                    <a href="mailto:contact@kingkebab.com" class="body-4 sidebar-link">contact@kingkebab.com</a>
-                    <div class="separator"></div>
-                    <p class="contact-label">Réservation</p>
-                    <a href="tel:0426423743" class="body-1 contact-number hover-underline">0426423743</a>
-                </div>
+               
             </nav>
 
             <a href="{{ route('reservation') }}" class="btn btn-secondary">
@@ -151,10 +176,7 @@
                         <img src="{{ asset('assets/images/logo.svg') }}" width="160" height="50" loading="lazy" alt="King Kebab">
                     </a>
 
-                    <address class="body-4">20, avenue Marcel Nicolas</address>
-                    <a href="mailto:contact@kingkebab.com" class="body-4 contact-link">contact@kingkebab.com</a>
-                    <a href="tel:0426423743" class="body-4 contact-link">Réservation : 0426423743</a>
-                    <p class="body-4">Ouvert : 11h00 - 23h00</p>
+                  
 
                     <div class="wrapper">
                         <div class="separator"></div>
@@ -203,6 +225,11 @@
     <!-- Back to Top -->
     <a href="#top" class="back-top-btn active" aria-label="back to top" data-back-top-btn>
         <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+    </a>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/0426423743" target="_blank" class="whatsapp-btn" aria-label="Contact us on WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png" alt="WhatsApp" class="whatsapp-icon">
     </a>
 
     <!-- Scripts -->

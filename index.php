@@ -191,31 +191,77 @@ if ($is_admin) {
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="king-kebab-frontend/favicon.svg">
+    
+    <!-- WhatsApp Button Styles -->
+    <style>
+        /* WhatsApp Floating Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            animation: whatsappPulse 2s infinite;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
+            background: #128C7E;
+            color: white;
+        }
+
+        .whatsapp-btn .whatsapp-icon {
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s ease;
+            filter: brightness(0) invert(1);
+        }
+
+        .whatsapp-btn:hover .whatsapp-icon {
+            transform: scale(1.2);
+        }
+
+        @keyframes whatsappPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+                bottom: 15px;
+                left: 15px;
+            }
+
+            .whatsapp-btn .whatsapp-icon {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Top Header - Contact Info -->
-    <div class="top-header">
-        <div class="container">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
-                    <span><?php echo htmlspecialchars($contact_address); ?></span>
-                </div>
-                <div class="contact-item">
-                    <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
-                    <span>Ouvert : <?php echo htmlspecialchars($opening_hours); ?></span>
-                </div>
-                <div class="contact-item">
-                    <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
-                    <span><?php echo htmlspecialchars($contact_phone); ?></span>
-                </div>
-                <div class="contact-item">
-                    <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
-                    <span><?php echo htmlspecialchars($contact_email); ?></span>
-                </div>
-            </div>
-        </div>
-    </div>
+ 
 
     <!-- Main Header - Navigation -->
     <header class="header">
@@ -322,6 +368,11 @@ if ($is_admin) {
             </div>
         </div>
     </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/0426423743" target="_blank" class="whatsapp-btn" aria-label="Contact us on WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png" alt="WhatsApp" class="whatsapp-icon">
+    </a>
 
     <!-- JavaScript -->
     <script src="king-kebab-frontend/assets/js/script.js"></script>
