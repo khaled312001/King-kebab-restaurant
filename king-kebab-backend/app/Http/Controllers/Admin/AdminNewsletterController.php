@@ -33,13 +33,13 @@ class AdminNewsletterController extends Controller
 
         $newsletter->update($request->all());
 
-        return redirect()->route('admin.newsletters.index')->with('success', 'تم تحديث البريد الإلكتروني بنجاح');
+        return redirect()->route('admin.newsletters.index')->with('success', 'Email mis à jour avec succès');
     }
 
     public function destroy(Newsletter $newsletter)
     {
         $newsletter->delete();
 
-        return redirect()->route('admin.newsletters.index')->with('success', 'تم حذف البريد الإلكتروني بنجاح');
+        return redirect()->route('admin.newsletters.index')->with('success', 'Email supprimé avec succès');
     }
 } 

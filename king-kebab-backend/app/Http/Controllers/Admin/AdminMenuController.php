@@ -27,7 +27,7 @@ class AdminMenuController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
-            'category_id' => 'required|exists:menu_categories,id',
+            'category' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_available' => 'boolean',
         ]);
@@ -44,7 +44,7 @@ class AdminMenuController extends Controller
 
         Menu::create($data);
 
-        return redirect()->route('admin.menus.index')->with('success', 'تم إضافة العنصر بنجاح');
+        return redirect()->route('admin.menus.index')->with('success', 'Élément ajouté avec succès');
     }
 
     public function show(Menu $menu)
@@ -64,7 +64,7 @@ class AdminMenuController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
-            'category_id' => 'required|exists:menu_categories,id',
+            'category' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_available' => 'boolean',
         ]);
@@ -86,7 +86,7 @@ class AdminMenuController extends Controller
 
         $menu->update($data);
 
-        return redirect()->route('admin.menus.index')->with('success', 'تم تحديث العنصر بنجاح');
+        return redirect()->route('admin.menus.index')->with('success', 'Élément mis à jour avec succès');
     }
 
     public function destroy(Menu $menu)
@@ -97,7 +97,7 @@ class AdminMenuController extends Controller
         
         $menu->delete();
 
-        return redirect()->route('admin.menus.index')->with('success', 'تم حذف العنصر بنجاح');
+        return redirect()->route('admin.menus.index')->with('success', 'Élément supprimé avec succès');
     }
 
     public function categories()
@@ -115,7 +115,21 @@ class AdminMenuController extends Controller
 
         MenuCategory::create($request->all());
 
-        return redirect()->route('admin.menu.categories')->with('success', 'تم إضافة الفئة بنجاح');
+        return redirect()->route('admin.menu.categories')->with('success', 'Catégorie ajoutée avec succès');
+    }
+
+    public function updateCategory(Request $request, $id)
+    {
+        $category = MenuCategory::findOrFail($id);
+        
+        $request->validate([
+            'name' => 'required|string|max:255|unique:menu_categories,name,' . $id,
+            'description' => 'nullable|string',
+        ]);
+
+        $category->update($request->all());
+
+        return redirect()->route('admin.menu.categories')->with('success', 'Catégorie mise à jour avec succès');
     }
 
     public function deleteCategory($id)
@@ -123,11 +137,11 @@ class AdminMenuController extends Controller
         $category = MenuCategory::findOrFail($id);
         
         if ($category->menus()->count() > 0) {
-            return back()->with('error', 'لا يمكن حذف الفئة لوجود عناصر مرتبطة بها');
+            return back()->with('error', 'Impossible de supprimer la catégorie car elle contient des éléments');
         }
         
         $category->delete();
 
-        return redirect()->route('admin.menu.categories')->with('success', 'تم حذف الفئة بنجاح');
+        return redirect()->route('admin.menu.categories')->with('success', 'Catégorie supprimée avec succès');
     }
 } 

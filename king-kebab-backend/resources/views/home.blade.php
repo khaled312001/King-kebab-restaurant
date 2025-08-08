@@ -292,113 +292,44 @@
             </div>
 
             <div class="menu-grid">
+                @foreach($featuredMeals as $meal)
                 <div class="menu-item">
                     <div class="menu-image">
-                        <img src="{{ asset('assets/images/menu-1.png') }}" alt="Kebab Classique" loading="lazy">
+                        <img src="{{ $meal->image ? asset($meal->image) : asset('assets/images/menu-1.png') }}" alt="{{ $meal->name }}" loading="lazy">
                         <div class="menu-overlay">
-                            <div class="menu-badge">Populaire</div>
+                            @if($meal->category == 'Kebabs')
+                                <div class="menu-badge">Populaire</div>
+                            @elseif($meal->category == 'Pizzas')
+                                <div class="menu-badge menu-badge-premium">Premium</div>
+                            @elseif($meal->category == 'Burgers')
+                                <div class="menu-badge menu-badge-special">Spécial</div>
+                            @elseif($meal->category == 'Grillades')
+                                <div class="menu-badge menu-badge-new">Nouveau</div>
+                            @elseif($meal->category == 'Boissons')
+                                <div class="menu-badge menu-badge-drink">Boisson</div>
+                            @else
+                                <div class="menu-badge">Populaire</div>
+                            @endif
                         </div>
                     </div>
                     <div class="menu-content">
                         <div class="menu-header">
-                            <h3 class="menu-title">Kebab Classique</h3>
-                            <div class="menu-price">€8.50</div>
+                            <h3 class="menu-title">{{ $meal->name }}</h3>
+                            <div class="menu-price">€{{ number_format($meal->price, 2) }}</div>
                         </div>
-                        <p class="menu-description">Viande grillée, salade fraîche, sauce maison</p>
+                        <p class="menu-description">{{ $meal->description }}</p>
                         <div class="menu-ingredients">
-                            <span class="ingredient-tag">Viande</span>
-                            <span class="ingredient-tag">Salade</span>
-                            <span class="ingredient-tag">Sauce</span>
+                            <span class="ingredient-tag">{{ $meal->category }}</span>
                         </div>
                         <div class="menu-actions">
-                            <a href="{{ route('menu.show', 1) }}" class="menu-btn menu-btn-details">
+                            <a href="{{ route('menu.show', $meal->id) }}" class="menu-btn menu-btn-details">
                                 <i class="fas fa-info-circle"></i>
                                 Détails
                             </a>
                         </div>
                     </div>
                 </div>
-
-                <div class="menu-item">
-                    <div class="menu-image">
-                        <img src="{{ asset('assets/images/menu-2.png') }}" alt="Kebab Royal" loading="lazy">
-                        <div class="menu-overlay">
-                            <div class="menu-badge menu-badge-premium">Premium</div>
-                        </div>
-                    </div>
-                    <div class="menu-content">
-                        <div class="menu-header">
-                            <h3 class="menu-title">Kebab Royal</h3>
-                            <div class="menu-price">€12.00</div>
-                        </div>
-                        <p class="menu-description">Viande premium, fromage, légumes grillés</p>
-                        <div class="menu-ingredients">
-                            <span class="ingredient-tag">Viande Premium</span>
-                            <span class="ingredient-tag">Fromage</span>
-                            <span class="ingredient-tag">Légumes</span>
-                        </div>
-                        <div class="menu-actions">
-                            <a href="{{ route('menu.show', 2) }}" class="menu-btn menu-btn-details">
-                                <i class="fas fa-info-circle"></i>
-                                Détails
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="menu-item">
-                    <div class="menu-image">
-                        <img src="{{ asset('assets/images/menu-3.png') }}" alt="Assiette Mixte" loading="lazy">
-                        <div class="menu-overlay">
-                            <div class="menu-badge menu-badge-special">Spécial</div>
-                        </div>
-                    </div>
-                    <div class="menu-content">
-                        <div class="menu-header">
-                            <h3 class="menu-title">Assiette Mixte</h3>
-                            <div class="menu-price">€15.00</div>
-                        </div>
-                        <p class="menu-description">Viande, riz, salade, frites maison</p>
-                        <div class="menu-ingredients">
-                            <span class="ingredient-tag">Viande</span>
-                            <span class="ingredient-tag">Riz</span>
-                            <span class="ingredient-tag">Frites</span>
-                        </div>
-                        <div class="menu-actions">
-                            <a href="{{ route('menu.show', 3) }}" class="menu-btn menu-btn-details">
-                                <i class="fas fa-info-circle"></i>
-                                Détails
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="menu-item">
-                    <div class="menu-image">
-                        <img src="{{ asset('assets/images/menu-4.png') }}" alt="Sandwich Spécial" loading="lazy">
-                        <div class="menu-overlay">
-                            <div class="menu-badge menu-badge-new">Nouveau</div>
-                        </div>
-                    </div>
-                    <div class="menu-content">
-                        <div class="menu-header">
-                            <h3 class="menu-title">Sandwich Spécial</h3>
-                            <div class="menu-price">€7.50</div>
-                        </div>
-                        <p class="menu-description">Pain frais, viande, légumes, sauces</p>
-                        <div class="menu-ingredients">
-                            <span class="ingredient-tag">Pain Frais</span>
-                            <span class="ingredient-tag">Viande</span>
-                            <span class="ingredient-tag">Légumes</span>
-                        </div>
-                        <div class="menu-actions">
-                            <a href="{{ route('menu.show', 4) }}" class="menu-btn menu-btn-details">
-                                <i class="fas fa-info-circle"></i>
-                                Détails
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
             <div class="menu-cta-section">

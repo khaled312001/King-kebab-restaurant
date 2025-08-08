@@ -28,6 +28,7 @@
                 <link rel="stylesheet" href="{{ asset('assets/css/contact.css') }}?v={{ time() }}">
                 <link rel="stylesheet" href="{{ asset('assets/css/about.css') }}?v={{ time() }}">
                 <link rel="stylesheet" href="{{ asset('assets/css/menu.css') }}?v={{ time() }}">
+                <link rel="stylesheet" href="{{ asset('assets/css/meal-details-enhanced.css') }}?v={{ time() }}">
 
   <!-- Ionicons for icons -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

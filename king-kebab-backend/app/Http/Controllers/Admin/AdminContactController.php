@@ -41,14 +41,14 @@ class AdminContactController extends Controller
 
         $contact->update($request->all());
 
-        return redirect()->route('admin.contacts.index')->with('success', 'تم تحديث الرسالة بنجاح');
+        return redirect()->route('admin.contacts.index')->with('success', 'Message mis à jour avec succès');
     }
 
     public function destroy(Contact $contact)
     {
         $contact->delete();
 
-        return redirect()->route('admin.contacts.index')->with('success', 'تم حذف الرسالة بنجاح');
+        return redirect()->route('admin.contacts.index')->with('success', 'Message supprimé avec succès');
     }
 
     public function updateStatus(Request $request, Contact $contact)
@@ -61,7 +61,7 @@ class AdminContactController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'تم تحديث حالة الرسالة بنجاح'
+            'message' => 'Statut du message mis à jour avec succès'
         ]);
     }
 } 

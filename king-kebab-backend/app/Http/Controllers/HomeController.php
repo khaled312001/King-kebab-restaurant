@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\MenuCategory;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -19,8 +20,9 @@ class HomeController extends Controller
     {
         $categories = MenuCategory::with('menus')->get();
         $menus = Menu::available()->get();
+        $settings = Setting::pluck('value', 'key')->toArray();
         
-        return view('menu', compact('categories', 'menus'));
+        return view('menu', compact('categories', 'menus', 'settings'));
     }
 
     public function about()

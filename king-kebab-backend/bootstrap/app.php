@@ -14,6 +14,15 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'auth' => \App\Http\Middleware\Authenticate::class,
         ]);
+        
+        // Exclure les routes admin de la vérification CSRF
+        $middleware->web(remove: [
+            \Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class,
+        ]);
+        
+        $middleware->web(append: [
+            \App\Http\Middleware\CustomCsrfToken::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

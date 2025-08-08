@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\MenuCategory;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -12,8 +13,9 @@ class MenuController extends Controller
     {
         $categories = MenuCategory::with('menus')->get();
         $menus = Menu::available()->get();
+        $settings = Setting::pluck('value', 'key')->toArray();
         
-        return view('menu', compact('categories', 'menus'));
+        return view('menu', compact('categories', 'menus', 'settings'));
     }
 
     public function show($id)
@@ -24,16 +26,18 @@ class MenuController extends Controller
             ->available()
             ->limit(4)
             ->get();
+        $settings = Setting::pluck('value', 'key')->toArray();
             
-        return view('meal-details', compact('meal', 'relatedMeals'));
+        return view('meal-details', compact('meal', 'relatedMeals', 'settings'));
     }
 
     public function category($category)
     {
         $categoryModel = MenuCategory::where('name', $category)->firstOrFail();
         $meals = Menu::where('category', $category)->available()->get();
+        $settings = Setting::pluck('value', 'key')->toArray();
         
-        return view('menu-category', compact('categoryModel', 'meals'));
+        return view('menu-category', compact('categoryModel', 'meals', 'settings'));
     }
 
     public function search(Request $request)

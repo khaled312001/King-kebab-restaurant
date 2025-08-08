@@ -10,12 +10,14 @@ class Article extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'content', 'image', 'author', 'status', 'published_at'
+        'title', 'subtitle', 'content', 'excerpt', 'image', 'author', 'status', 'published_at', 
+        'is_published', 'meta_title', 'meta_description'
     ];
 
     protected $casts = [
         'published_at' => 'datetime',
         'status' => 'string',
+        'is_published' => 'boolean',
     ];
 
     public function scopePublished($query)

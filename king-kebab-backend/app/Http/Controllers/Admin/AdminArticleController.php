@@ -23,12 +23,18 @@ class AdminArticleController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'subtitle' => 'nullable|string|max:255',
             'content' => 'required|string',
+            'excerpt' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|in:published,draft',
+            'is_published' => 'boolean',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string',
         ]);
 
         $data = $request->all();
+        $data['is_published'] = $request->has('is_published');
+        $data['status'] = $data['is_published'] ? 'published' : 'draft';
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -39,7 +45,7 @@ class AdminArticleController extends Controller
 
         Article::create($data);
 
-        return redirect()->route('admin.articles.index')->with('success', 'تم إضافة المقال بنجاح');
+        return redirect()->route('admin.articles.index')->with('success', 'Article ajouté avec succès');
     }
 
     public function show(Article $article)
@@ -56,12 +62,18 @@ class AdminArticleController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'subtitle' => 'nullable|string|max:255',
             'content' => 'required|string',
+            'excerpt' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|in:published,draft',
+            'is_published' => 'boolean',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string',
         ]);
 
         $data = $request->all();
+        $data['is_published'] = $request->has('is_published');
+        $data['status'] = $data['is_published'] ? 'published' : 'draft';
 
         if ($request->hasFile('image')) {
             // Delete old image
@@ -77,7 +89,7 @@ class AdminArticleController extends Controller
 
         $article->update($data);
 
-        return redirect()->route('admin.articles.index')->with('success', 'تم تحديث المقال بنجاح');
+        return redirect()->route('admin.articles.index')->with('success', 'Article mis à jour avec succès');
     }
 
     public function destroy(Article $article)
@@ -88,6 +100,6 @@ class AdminArticleController extends Controller
         
         $article->delete();
 
-        return redirect()->route('admin.articles.index')->with('success', 'تم حذف المقال بنجاح');
+        return redirect()->route('admin.articles.index')->with('success', 'Article supprimé avec succès');
     }
 } 

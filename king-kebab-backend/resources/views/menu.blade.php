@@ -61,8 +61,9 @@
             <div class="menu-filters">
                 <button class="filter-btn active" data-category="all">Tous</button>
                 <button class="filter-btn" data-category="Kebabs">Kebabs</button>
+                <button class="filter-btn" data-category="Pizzas">Pizzas</button>
+                <button class="filter-btn" data-category="Burgers">Burgers</button>
                 <button class="filter-btn" data-category="Grillades">Grillades</button>
-                <button class="filter-btn" data-category="Sandwichs">Sandwichs</button>
                 <button class="filter-btn" data-category="Boissons">Boissons</button>
             </div>
 
@@ -70,7 +71,7 @@
                 @foreach($menus as $meal)
                 <div class="menu-item" data-category="{{ $meal->category }}">
                     <div class="menu-item-image">
-                        <img src="{{ asset('assets/images/menu-1.png') }}" alt="{{ $meal->name }}" class="menu-img">
+                        <img src="{{ $meal->image ? asset($meal->image) : asset('assets/images/menu-1.png') }}" alt="{{ $meal->name }}" class="menu-img">
                         <div class="menu-overlay">
                             <a href="{{ route('menu.show', $meal->id) }}" class="view-details">
                                 <i class="fas fa-eye"></i>
@@ -151,41 +152,33 @@
             </div>
 
             <div class="specialties-grid">
+                @foreach($menus->take(3) as $specialty)
                 <div class="specialty-card">
                     <div class="specialty-image">
-                        <img src="{{ asset('assets/images/menu-1.png') }}" alt="Kebab Royal">
-                        <div class="specialty-badge">Signature</div>
+                        <img src="{{ $specialty->image ? asset($specialty->image) : asset('assets/images/menu-1.png') }}" alt="{{ $specialty->name }}">
+                        <div class="specialty-badge">
+                            @if($specialty->category == 'Kebabs')
+                                Signature
+                            @elseif($specialty->category == 'Pizzas')
+                                Premium
+                            @elseif($specialty->category == 'Burgers')
+                                Populaire
+                            @elseif($specialty->category == 'Grillades')
+                                Spécial
+                            @elseif($specialty->category == 'Boissons')
+                                Frais
+                            @else
+                                Signature
+                            @endif
+                        </div>
                     </div>
                     <div class="specialty-content">
-                        <h3>Kebab Royal</h3>
-                        <p>Notre plat signature avec viande de bœuf, légumes frais et sauce spéciale</p>
-                        <div class="specialty-price">€12.00</div>
+                        <h3>{{ $specialty->name }}</h3>
+                        <p>{{ $specialty->description }}</p>
+                        <div class="specialty-price">€{{ number_format($specialty->price, 2) }}</div>
                     </div>
                 </div>
-
-                <div class="specialty-card">
-                    <div class="specialty-image">
-                        <img src="{{ asset('assets/images/menu-2.png') }}" alt="Pizza Quatre Fromages">
-                        <div class="specialty-badge">Premium</div>
-                    </div>
-                    <div class="specialty-content">
-                        <h3>Pizza Quatre Fromages</h3>
-                        <p>Pizza gourmet avec quatre variétés de fromages sélectionnés</p>
-                        <div class="specialty-price">€16.00</div>
-                    </div>
-                </div>
-
-                <div class="specialty-card">
-                    <div class="specialty-image">
-                        <img src="{{ asset('assets/images/menu-3.png') }}" alt="Burger Royal">
-                        <div class="specialty-badge">Populaire</div>
-                    </div>
-                    <div class="specialty-content">
-                        <h3>Burger Royal</h3>
-                        <p>Burger premium avec double steak, bacon et fromage</p>
-                        <div class="specialty-price">€14.50</div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -203,7 +196,7 @@
                         <i class="fas fa-calendar-alt"></i>
                         <span>Réserver une table</span>
                     </a>
-                    <a href="tel:{{ $settings['contact_phone'] }}" class="btn btn-outline">
+                    <a href="tel:{{ $settings['contact_phone'] ?? '0426423743' }}" class="btn btn-outline">
                         <i class="fas fa-phone"></i>
                         <span>Appeler maintenant</span>
                     </a>

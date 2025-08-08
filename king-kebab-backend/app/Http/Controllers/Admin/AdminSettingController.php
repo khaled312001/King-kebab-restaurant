@@ -57,6 +57,6 @@ class AdminSettingController extends Controller
             }
         }
 
-        return redirect()->route('admin.settings')->with('success', 'تم تحديث الإعدادات بنجاح');
+        return redirect()->route('admin.settings')->with('success', 'Paramètres mis à jour avec succès');
     }
 } 

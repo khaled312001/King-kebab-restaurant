@@ -1,18 +1,18 @@
 @extends('admin.layouts.app')
 
-@section('title', 'إدارة النشرة الإخبارية')
+@section('title', 'Gestion de la Newsletter')
 
 @section('breadcrumb')
-<li class="breadcrumb-item active">إدارة النشرة الإخبارية</li>
+<li class="breadcrumb-item active">Gestion de la Newsletter</li>
 @endsection
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>إدارة النشرة الإخبارية</h2>
+    <h2>Gestion de la Newsletter</h2>
     <div class="btn-group" role="group">
-        <button type="button" class="btn btn-outline-primary" onclick="filterNewsletters('all')">الكل</button>
-        <button type="button" class="btn btn-outline-success" onclick="filterNewsletters('active')">نشط</button>
-        <button type="button" class="btn btn-outline-danger" onclick="filterNewsletters('inactive')">غير نشط</button>
+        <button type="button" class="btn btn-outline-primary" onclick="filterNewsletters('all')">Tous</button>
+        <button type="button" class="btn btn-outline-success" onclick="filterNewsletters('active')">Actif</button>
+        <button type="button" class="btn btn-outline-danger" onclick="filterNewsletters('inactive')">Inactif</button>
     </div>
 </div>
 
@@ -20,7 +20,7 @@
     <div class="card-header">
         <h5 class="mb-0">
             <i class="fas fa-newspaper me-2"></i>
-            قائمة المشتركين
+            Liste des Abonnés
         </h5>
     </div>
     <div class="card-body">
@@ -29,10 +29,10 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>البريد الإلكتروني</th>
-                            <th>الحالة</th>
-                            <th>تاريخ الاشتراك</th>
-                            <th>الإجراءات</th>
+                            <th>Email</th>
+                            <th>Statut</th>
+                            <th>Date d'Inscription</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,10 +46,10 @@
                                         data-newsletter-id="{{ $newsletter->id }}" 
                                         style="width: auto;">
                                     <option value="active" {{ $newsletter->status == 'active' ? 'selected' : '' }}>
-                                        نشط
+                                        Actif
                                     </option>
                                     <option value="inactive" {{ $newsletter->status == 'inactive' ? 'selected' : '' }}>
-                                        غير نشط
+                                        Inactif
                                     </option>
                                 </select>
                             </td>
@@ -58,14 +58,14 @@
                             </td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('admin.newsletters.show', $newsletter) }}" class="btn btn-sm btn-outline-primary">
+                                    <a href="{{ route('admin.newsletters.show', $newsletter->id) }}" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <a href="{{ route('admin.newsletters.edit', $newsletter) }}" class="btn btn-sm btn-outline-warning">
+                                    <a href="{{ route('admin.newsletters.edit', $newsletter->id) }}" class="btn btn-sm btn-outline-warning">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form method="POST" action="{{ route('admin.newsletters.destroy', $newsletter) }}" 
-                                          class="d-inline" onsubmit="return confirm('هل أنت متأكد من حذف هذا المشترك؟')">
+                                    <form method="POST" action="{{ route('admin.newsletters.destroy', $newsletter->id) }}" 
+                                          class="d-inline" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet abonné ?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-outline-danger">
@@ -86,8 +86,8 @@
         @else
             <div class="text-center py-5">
                 <i class="fas fa-newspaper fa-3x text-muted mb-3"></i>
-                <h5 class="text-muted">لا توجد مشتركين</h5>
-                <p class="text-muted">لم يتم الاشتراك في النشرة الإخبارية بعد</p>
+                <h5 class="text-muted">Aucun abonné</h5>
+                <p class="text-muted">Aucun abonnement à la newsletter pour le moment</p>
             </div>
         @endif
     </div>
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
             alert.style.zIndex = '9999';
             alert.innerHTML = `
                 <i class="fas fa-check-circle me-2"></i>
-                تم تحديث حالة المشترك بنجاح
+                Statut de l'abonné mis à jour avec succès
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             `;
             document.body.appendChild(alert);

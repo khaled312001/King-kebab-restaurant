@@ -1,20 +1,20 @@
 @extends('admin.layouts.app')
 
-@section('title', 'إدارة الحجوزات')
+@section('title', 'Gestion des Réservations')
 
 @section('breadcrumb')
-<li class="breadcrumb-item active">إدارة الحجوزات</li>
+<li class="breadcrumb-item active">Gestion des Réservations</li>
 @endsection
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>إدارة الحجوزات</h2>
+    <h2>Gestion des Réservations</h2>
     <div class="btn-group" role="group">
-        <button type="button" class="btn btn-outline-primary" onclick="filterReservations('all')">الكل</button>
-        <button type="button" class="btn btn-outline-warning" onclick="filterReservations('pending')">معلق</button>
-        <button type="button" class="btn btn-outline-success" onclick="filterReservations('confirmed')">مؤكد</button>
-        <button type="button" class="btn btn-outline-danger" onclick="filterReservations('cancelled')">ملغي</button>
-        <button type="button" class="btn btn-outline-info" onclick="filterReservations('completed')">مكتمل</button>
+        <button type="button" class="btn btn-outline-primary" onclick="filterReservations('all')">Toutes</button>
+        <button type="button" class="btn btn-outline-warning" onclick="filterReservations('pending')">En attente</button>
+        <button type="button" class="btn btn-outline-success" onclick="filterReservations('confirmed')">Confirmée</button>
+        <button type="button" class="btn btn-outline-danger" onclick="filterReservations('cancelled')">Annulée</button>
+        <button type="button" class="btn btn-outline-info" onclick="filterReservations('completed')">Terminée</button>
     </div>
 </div>
 
@@ -22,7 +22,7 @@
     <div class="card-header">
         <h5 class="mb-0">
             <i class="fas fa-calendar-check me-2"></i>
-            قائمة الحجوزات
+            Liste des Réservations
         </h5>
     </div>
     <div class="card-body">
@@ -31,15 +31,15 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>الاسم</th>
-                            <th>البريد الإلكتروني</th>
-                            <th>الهاتف</th>
-                            <th>التاريخ</th>
-                            <th>الوقت</th>
-                            <th>عدد الأشخاص</th>
-                            <th>الحالة</th>
-                            <th>تاريخ الحجز</th>
-                            <th>الإجراءات</th>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>Date</th>
+                            <th>Heure</th>
+                            <th>Nombre de Personnes</th>
+                            <th>Statut</th>
+                            <th>Date de Réservation</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,23 +60,23 @@
                             </td>
                             <td>{{ $reservation->time }}</td>
                             <td>
-                                <span class="badge bg-info">{{ $reservation->guests }} أشخاص</span>
+                                <span class="badge bg-info">{{ $reservation->guests }} personnes</span>
                             </td>
                             <td>
                                 <select class="form-select form-select-sm status-select" 
                                         data-reservation-id="{{ $reservation->id }}" 
                                         style="width: auto;">
                                     <option value="pending" {{ $reservation->status == 'pending' ? 'selected' : '' }}>
-                                        معلق
+                                        En attente
                                     </option>
                                     <option value="confirmed" {{ $reservation->status == 'confirmed' ? 'selected' : '' }}>
-                                        مؤكد
+                                        Confirmée
                                     </option>
                                     <option value="cancelled" {{ $reservation->status == 'cancelled' ? 'selected' : '' }}>
-                                        ملغي
+                                        Annulée
                                     </option>
                                     <option value="completed" {{ $reservation->status == 'completed' ? 'selected' : '' }}>
-                                        مكتمل
+                                        Terminée
                                     </option>
                                 </select>
                             </td>
@@ -85,14 +85,14 @@
                             </td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('admin.reservations.show', $reservation) }}" class="btn btn-sm btn-outline-primary">
+                                    <a href="{{ route('admin.reservations.show', $reservation->id) }}" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <a href="{{ route('admin.reservations.edit', $reservation) }}" class="btn btn-sm btn-outline-warning">
+                                    <a href="{{ route('admin.reservations.edit', $reservation->id) }}" class="btn btn-sm btn-outline-warning">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form method="POST" action="{{ route('admin.reservations.destroy', $reservation) }}" 
-                                          class="d-inline" onsubmit="return confirm('هل أنت متأكد من حذف هذا الحجز؟')">
+                                    <form method="POST" action="{{ route('admin.reservations.destroy', $reservation->id) }}" 
+                                          class="d-inline" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-outline-danger">
@@ -113,8 +113,8 @@
         @else
             <div class="text-center py-5">
                 <i class="fas fa-calendar-times fa-3x text-muted mb-3"></i>
-                <h5 class="text-muted">لا توجد حجوزات</h5>
-                <p class="text-muted">لم يتم إجراء أي حجوزات بعد</p>
+                <h5 class="text-muted">Aucune réservation</h5>
+                <p class="text-muted">Aucune réservation n'a été effectuée pour le moment</p>
             </div>
         @endif
     </div>

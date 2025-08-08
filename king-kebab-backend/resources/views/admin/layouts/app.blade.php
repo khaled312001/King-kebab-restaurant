@@ -306,7 +306,7 @@
         <!-- Top Bar -->
         <div class="top-bar">
             <div>
-                <h1 class="page-title">@yield('title', 'لوحة الإدارة')</h1>
+                <h1 class="page-title">@yield('title', 'Tableau de Bord')</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Accueil</a></li>

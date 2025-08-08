@@ -1,20 +1,20 @@
 @extends('admin.layouts.app')
 
-@section('title', 'إدارة القوائم')
+@section('title', 'Gestion des Menus')
 
 @section('breadcrumb')
-<li class="breadcrumb-item active">إدارة القوائم</li>
+<li class="breadcrumb-item active">Gestion des Menus</li>
 @endsection
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>إدارة القوائم</h2>
+    <h2>Gestion des Menus</h2>
     <div>
         <a href="{{ route('admin.menus.create') }}" class="btn btn-primary">
-            <i class="fas fa-plus me-2"></i>إضافة عنصر جديد
+            <i class="fas fa-plus me-2"></i>Ajouter un Élément
         </a>
         <a href="{{ route('admin.menu.categories') }}" class="btn btn-outline-secondary">
-            <i class="fas fa-tags me-2"></i>إدارة الفئات
+            <i class="fas fa-tags me-2"></i>Gérer les Catégories
         </a>
     </div>
 </div>
@@ -23,7 +23,7 @@
     <div class="card-header">
         <h5 class="mb-0">
             <i class="fas fa-utensils me-2"></i>
-            عناصر القائمة
+            Éléments du Menu
         </h5>
     </div>
     <div class="card-body">
@@ -32,13 +32,13 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>الصورة</th>
-                            <th>الاسم</th>
-                            <th>الفئة</th>
-                            <th>السعر</th>
-                            <th>الحالة</th>
-                            <th>تاريخ الإنشاء</th>
-                            <th>الإجراءات</th>
+                            <th>Image</th>
+                            <th>Nom</th>
+                            <th>Catégorie</th>
+                            <th>Prix</th>
+                            <th>Statut</th>
+                            <th>Date de Création</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,20 +62,22 @@
                                 @endif
                             </td>
                             <td>
-                                @if($menu->category)
+                                @if($menu->category && is_object($menu->category) && $menu->category->name)
                                     <span class="badge bg-info">{{ $menu->category->name }}</span>
+                                @elseif($menu->category && is_string($menu->category))
+                                    <span class="badge bg-info">{{ $menu->category }}</span>
                                 @else
-                                    <span class="badge bg-secondary">بدون فئة</span>
+                                    <span class="badge bg-secondary">Sans Catégorie</span>
                                 @endif
                             </td>
                             <td>
-                                <strong class="text-success">{{ number_format($menu->price, 2) }} ريال</strong>
+                                <strong class="text-success">{{ number_format($menu->price, 2) }} €</strong>
                             </td>
                             <td>
                                 @if($menu->is_available)
-                                    <span class="badge bg-success">متاح</span>
+                                    <span class="badge bg-success">Disponible</span>
                                 @else
-                                    <span class="badge bg-danger">غير متاح</span>
+                                    <span class="badge bg-danger">Non Disponible</span>
                                 @endif
                             </td>
                             <td>
@@ -90,7 +92,7 @@
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <form method="POST" action="{{ route('admin.menus.destroy', $menu) }}" 
-                                          class="d-inline" onsubmit="return confirm('هل أنت متأكد من حذف هذا العنصر؟')">
+                                          class="d-inline" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-outline-danger">
@@ -111,10 +113,10 @@
         @else
             <div class="text-center py-5">
                 <i class="fas fa-utensils fa-3x text-muted mb-3"></i>
-                <h5 class="text-muted">لا توجد عناصر في القائمة</h5>
-                <p class="text-muted">ابدأ بإضافة عناصر جديدة للقائمة</p>
+                <h5 class="text-muted">Aucun élément dans le menu</h5>
+                <p class="text-muted">Commencez par ajouter de nouveaux éléments au menu</p>
                 <a href="{{ route('admin.menus.create') }}" class="btn btn-primary">
-                    <i class="fas fa-plus me-2"></i>إضافة عنصر جديد
+                    <i class="fas fa-plus me-2"></i>Ajouter un Nouvel Élément
                 </a>
             </div>
         @endif

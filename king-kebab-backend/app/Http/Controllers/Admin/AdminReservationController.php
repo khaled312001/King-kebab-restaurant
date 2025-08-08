@@ -39,14 +39,14 @@ class AdminReservationController extends Controller
 
         $reservation->update($request->all());
 
-        return redirect()->route('admin.reservations.index')->with('success', 'تم تحديث الحجز بنجاح');
+        return redirect()->route('admin.reservations.index')->with('success', 'Réservation mise à jour avec succès');
     }
 
     public function destroy(Reservation $reservation)
     {
         $reservation->delete();
 
-        return redirect()->route('admin.reservations.index')->with('success', 'تم حذف الحجز بنجاح');
+        return redirect()->route('admin.reservations.index')->with('success', 'Réservation supprimée avec succès');
     }
 
     public function updateStatus(Request $request, Reservation $reservation)
@@ -59,7 +59,7 @@ class AdminReservationController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'تم تحديث حالة الحجز بنجاح'
+            'message' => 'Statut de la réservation mis à jour avec succès'
         ]);
     }
 } 
